@@ -1,0 +1,4 @@
+Documents under protocol/ and docs/ are licensed under Creative Commons Attribution 4.0 International (CC BY 4.0):
+https://creativecommons.org/licenses/by/4.0/legalcode
+Copyright (c) 2026 Pietersite
+(Choose another licence, e.g. CC0, if you prefer; update metadata/.zenodo.json "license" and CITATION.cff accordingly.)

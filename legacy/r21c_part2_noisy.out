@@ -1,0 +1,2 @@
+GATE proxy=noisy   q=0.030 | main rej 0.147 [0.111,0.191] | mon rej 0.470 [0.414,0.527] | main & ~mon 0.057 [0.036,0.089]
+GATE proxy=noisy   q=0.050 | main rej 0.323 [0.273,0.378] | mon rej 0.870 [0.827,0.903] | main & ~mon 0.037 [0.021,0.064]

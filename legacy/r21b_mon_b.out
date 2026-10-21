@@ -1,0 +1,2 @@
+MON C q=.03 proxy uninformative        | reject 0.080 [0.054,0.116] | mean est delta_mon 0.01 vs true delta_mon 0.00 | UB cover 1.000 [0.987,1.000]
+MON H1 nu~3 no leak, proxy perfect     | reject 0.053 [0.033,0.085] | mean est delta_mon 0.32 vs true delta_mon 0.00 | UB cover 1.000 [0.987,1.000]

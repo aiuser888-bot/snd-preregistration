@@ -1,0 +1,15 @@
+B static x common          two q=0.000  delta=0.00 omega=0.000 | obs 0.052 [0.044,0.063]  pred alpha(delta) 0.050  CSviol=0
+B static x common          row q=0.000  delta=0.00 omega=0.000 | obs 0.046 [0.038,0.057]  pred alpha(delta) 0.050  CSviol=0
+C blockvar x blockdrift    two q=0.000  delta=0.00 omega=0.000 | obs 0.044 [0.036,0.054]  pred alpha(delta) 0.050  CSviol=0
+B static x common          two q=0.010  delta=0.00 omega=0.000 | obs 0.049 [0.040,0.059]  pred alpha(delta) 0.050  CSviol=0
+B static x common          row q=0.010  delta=0.35 omega=0.180 | obs 0.057 [0.047,0.067]  pred alpha(delta) 0.060  CSviol=0
+C blockvar x blockdrift    two q=0.010  delta=0.35 omega=0.178 | obs 0.056 [0.046,0.066]  pred alpha(delta) 0.059  CSviol=0
+B static x common          two q=0.020  delta=0.00 omega=0.000 | obs 0.051 [0.043,0.062]  pred alpha(delta) 0.050  CSviol=0
+B static x common          row q=0.020  delta=0.71 omega=0.180 | obs 0.095 [0.083,0.109]  pred alpha(delta) 0.090  CSviol=0
+C blockvar x blockdrift    two q=0.020  delta=0.70 omega=0.178 | obs 0.077 [0.067,0.090]  pred alpha(delta) 0.089  CSviol=0
+B static x common          two q=0.030  delta=0.00 omega=0.000 | obs 0.049 [0.040,0.059]  pred alpha(delta) 0.050  CSviol=0
+B static x common          row q=0.030  delta=1.06 omega=0.180 | obs 0.151 [0.136,0.167]  pred alpha(delta) 0.144  CSviol=0
+C blockvar x blockdrift    two q=0.030  delta=1.06 omega=0.178 | obs 0.146 [0.131,0.162]  pred alpha(delta) 0.143  CSviol=0
+B static x common          two q=0.050  delta=0.00 omega=0.000 | obs 0.053 [0.044,0.064]  pred alpha(delta) 0.050  CSviol=0
+B static x common          row q=0.050  delta=1.77 omega=0.180 | obs 0.315 [0.295,0.336]  pred alpha(delta) 0.334  CSviol=0
+C blockvar x blockdrift    two q=0.050  delta=1.76 omega=0.178 | obs 0.333 [0.312,0.353]  pred alpha(delta) 0.332  CSviol=0

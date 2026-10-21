@@ -1,0 +1,2 @@
+GATE proxy=perfect q=0.020 | main rej 0.077 [0.052,0.112] | mon rej 0.700 [0.646,0.749] | main & ~mon 0.017 [0.007,0.038]
+GATE proxy=perfect q=0.030 | main rej 0.153 [0.117,0.198] | mon rej 0.977 [0.953,0.989] | main & ~mon 0.000 [0.000,0.013]

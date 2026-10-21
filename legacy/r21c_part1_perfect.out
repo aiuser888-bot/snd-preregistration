@@ -1,0 +1,1 @@
+GATE proxy=perfect q=0.005 | main rej 0.063 [0.041,0.097] | mon rej 0.093 [0.065,0.132] | main & ~mon 0.060 [0.038,0.093] | main & ~mon & ub<=0.5 0.000 [0.000,0.013]

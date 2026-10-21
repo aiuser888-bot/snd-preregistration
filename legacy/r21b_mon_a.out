@@ -1,0 +1,3 @@
+MON no leak, drift only                | reject 0.050 [0.031,0.081] | mean est delta_mon 0.32 vs true delta_mon 0.00 | UB cover 1.000 [0.987,1.000]
+MON C q=.03 proxy perfect              | reject 0.963 [0.936,0.979] | mean est delta_mon 1.07 vs true delta_mon 1.05 | UB cover 0.997 [0.981,0.999]
+MON C q=.03 proxy noisy(25% flip)      | reject 0.480 [0.424,0.536] | mean est delta_mon 0.31 vs true delta_mon 0.26 | UB cover 1.000 [0.987,1.000]

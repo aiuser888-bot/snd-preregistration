@@ -1,0 +1,38 @@
+T      Vtarget   P(excl|H0) gross   power(r_min) gross
+3.7081  1.375e+09  0.8500             0.9234
+3.8730  1.500e+09  0.8907             0.9440
+critical V gross(0.80) = 1.2461e+09 ; net(0.80, gate x0.95 at eta->0) = 1.3506e+09
+V_target 1.375e+09: margin vs gross 10.3%, vs net 1.8%
+V_target 1.500e+09: margin vs gross 20.4%, vs net 11.1%
+
+Part A: net values with gate (alpha_mon=0.05), per eta
+  V=1.375e+09 eta=0.00  net P(excl|H0)=0.8079   net power(r_min)=0.8773
+  V=1.375e+09 eta=0.25  net P(excl|H0)=0.8104   net power(r_min)=0.8780
+  V=1.375e+09 eta=0.50  net P(excl|H0)=0.8187   net power(r_min)=0.8800
+  V=1.375e+09 eta=0.75  net P(excl|H0)=0.8327   net power(r_min)=0.8828
+  V=1.500e+09 eta=0.00  net P(excl|H0)=0.8462   net power(r_min)=0.8966
+  V=1.500e+09 eta=0.25  net P(excl|H0)=0.8486   net power(r_min)=0.8974
+  V=1.500e+09 eta=0.50  net P(excl|H0)=0.8559   net power(r_min)=0.8993
+  V=1.500e+09 eta=0.75  net P(excl|H0)=0.8690   net power(r_min)=0.9022
+
+Part B: reproduction success (i)&(ii), conditional on original significant; chi2_{2,.95}
+ V_target=1.375e+09 (nu0=3.708)
+   V_rep=1x: same effect 0.888  amp 0.5x 0.332  phase +60 0.302  phase +90 0.049
+   V_rep=2x: same effect 0.956  amp 0.5x 0.536  phase +60 0.208  phase +90 0.017
+   c grid (power(i)*0.95): c=0.25:0.345  c=0.5:0.615  c=1:0.877  c=2:0.948  c=4:0.950
+   c grid (i) power: c=0.25:0.363  c=0.5:0.647  c=1:0.923  c=2:0.998  c=4:1.000
+ V_target=1.500e+09 (nu0=3.873)
+   V_rep=1x: same effect 0.907  amp 0.5x 0.357  phase +60 0.277  phase +90 0.039
+   V_rep=2x: same effect 0.956  amp 0.5x 0.555  phase +60 0.176  phase +90 0.011
+   c grid (power(i)*0.95): c=0.25:0.373  c=0.5:0.653  c=1:0.897  c=2:0.949  c=4:0.950
+   c grid (i) power: c=0.25:0.392  c=0.5:0.688  c=1:0.944  c=2:0.999  c=4:1.000
+V=1.375e+09 sigma_f^2=0.25  N=1.100e+10  months=10.5
+V=1.375e+09 sigma_f^2=0.15  N=1.833e+10  months=17.4
+V=1.375e+09 sigma_f^2=0.10  N=2.750e+10  months=26.1
+V=1.375e+09 sigma_f^2=0.05  N=5.500e+10  months=52.3
+gate sigma_f^2 for N_max=3e10: 0.0917  (months at N_max 28.5)
+V=1.500e+09 sigma_f^2=0.25  N=1.200e+10  months=11.4
+V=1.500e+09 sigma_f^2=0.15  N=2.000e+10  months=19.0
+V=1.500e+09 sigma_f^2=0.10  N=3.000e+10  months=28.5
+V=1.500e+09 sigma_f^2=0.05  N=6.000e+10  months=57.0
+gate sigma_f^2 for N_max=3e10: 0.1000  (months at N_max 28.5)
