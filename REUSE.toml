@@ -1,0 +1,22 @@
+# Machine-readable licence mapping (REUSE specification, REUSE.toml format).
+# Every file in the repository must match exactly one annotation below;  python code/scripts/check_licenses.py  verifies that.
+# Full licence texts: LICENSES/MIT.txt and LICENSES/CC-BY-4.0.txt.  Human-readable summary: LICENSE.
+version = 1
+
+# Software and automation -> MIT
+[[annotations]]
+path = ["code/**", "legacy/**", ".github/**", ".gitignore"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 Pietersite"
+SPDX-License-Identifier = "MIT"
+
+# Text, data and metadata -> CC BY 4.0
+[[annotations]]
+path = [
+  "protocol/**", "docs/**", "results/**", "metadata/**",
+  "README.md", "CHANGELOG.md", "VERSIONING.md", "OSF_REGISTRATION_GUIDE.md",
+  "CITATION.cff", ".zenodo.json", "SHA256SUMS.txt", "LICENSE", "REUSE.toml",
+]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 Pietersite"
+SPDX-License-Identifier = "CC-BY-4.0"

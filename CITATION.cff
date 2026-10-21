@@ -1,11 +1,12 @@
 cff-version: 1.2.0
 message: "If you use this protocol or code, please cite it as below."
-title: "Project SND: Pre-registration Protocol V2.0.10 and Reference Implementation for a Randomization-Based Test of Dependence between Sealed Features and Later Random Basis Angles"
-version: "2.0.10"
-date-released: "2026-10-15"
+title: "Project SND: Pre-registration Protocol V2.0.11 and Reference Implementation for a Randomization-Based Test of Dependence between Sealed Features and Later Random Basis Angles"
+version: "2.0.11"
+date-released: "2026-10-21"
 type: dataset
 authors:
   - alias: "Pietersite"
+# The cited work (protocol, documents, results) is CC-BY-4.0; the software in code/ and legacy/ is MIT (see LICENSE, REUSE.toml).
 license: "CC-BY-4.0"
 keywords: [preregistration, randomization test, Rice distribution, Feldman-Cousins, upper confidence bound]
-abstract: "Pre-registration protocol (V2.0.10), reference implementation and reduced-scale validation of a randomization test and one-sided amplitude upper confidence bound. No real experimental data are included."
+abstract: "Pre-registration protocol (V2.0.11), reference implementation and reduced-scale validation of a randomization test and one-sided amplitude upper confidence bound. No real experimental data are included."

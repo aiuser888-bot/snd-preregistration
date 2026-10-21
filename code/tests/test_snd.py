@@ -294,7 +294,9 @@ def test_theta_is_pure_function_of_seed_and_counter():
     np.random.seed(2); _ = np.random.random(1000); b2 = block_angles(make_block_rng(key, 9, 2), L)[0]
     assert np.array_equal(a, b2)
     assert not np.array_equal(seed_to_key(seed_material(raw, 4)), key)
-    assert not np.array_equal(seed_to_key(seed_material(raw, 3, "2.0.11")), key)
+    import snd
+    assert seed_material(raw, 3) == seed_material(raw, 3, snd.__version__)          # the default version tag IS the package version
+    assert not np.array_equal(seed_to_key(seed_material(raw, 3, "0.0.0-other")), key)   # a different version string gives a different key
 
 
 if __name__ == "__main__":      # dependency-free runner (pytest also works)

@@ -1,9 +1,40 @@
-MIT License (applies to everything under code/ and legacy/)
+Project SND -- licence notice
+=============================
 
 Copyright (c) 2026 Pietersite
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+This repository is multi-licensed. Which licence applies to a file depends on where the file is.
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+  MIT  (SPDX: MIT)  -- software and automation
+      code/            reference implementation, tests and scripts
+      legacy/          early exploratory scripts and their outputs
+      .github/         GitHub workflow
+      .gitignore
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+  Creative Commons Attribution 4.0 International  (SPDX: CC-BY-4.0)  -- text, data and metadata
+      protocol/        the pre-registration protocol (current version and history)
+      docs/            audits, change log, development history
+      results/         validation results and the Feldman-Cousins-Rice table
+      metadata/  CITATION.cff  .zenodo.json  SHA256SUMS.txt
+      README.md  CHANGELOG.md  VERSIONING.md  OSF_REGISTRATION_GUIDE.md
+      LICENSE  REUSE.toml   (this notice and the mapping file)
+
+Every file in the repository is in exactly one of the two lists above. The authoritative, machine-readable mapping is
+REUSE.toml. The complete licence texts are LICENSES/MIT.txt and LICENSES/CC-BY-4.0.txt.
+"python code/scripts/check_licenses.py" checks that no file is uncovered or covered twice.
+
+In short: the protocol, the documents and the results are NOT under the MIT licence, and the code is NOT under CC BY 4.0.
+GitHub's licence indicator can show only one licence per repository, so it cannot show this split; this file is the reference.
+
+To give credit as CC BY 4.0 requires, cite the work as described in CITATION.cff (GitHub: "Cite this repository").
+
+--------------------------------------------------------------------------------------------------------------------------
+
+授權說明（中文）
+
+本倉庫採雙授權，依檔案位置而定：
+  * 程式碼與自動化（code/、legacy/、.github/、.gitignore）：MIT。
+  * 規範、文件、結果與中繼資料（protocol/、docs/、results/、metadata/、CITATION.cff、.zenodo.json、SHA256SUMS.txt，
+    以及根目錄的 README.md、CHANGELOG.md、VERSIONING.md、OSF_REGISTRATION_GUIDE.md）：創用 CC 姓名標示 4.0 國際（CC BY 4.0）。
+倉庫內每個檔案恰屬其一；逐檔對照見 REUSE.toml，完整授權條文見 LICENSES/。
+GitHub 的授權標示一個倉庫只能顯示一種授權，無法呈現這個區分，請以本檔為準：規範與文件不是 MIT，程式碼不是 CC BY 4.0。

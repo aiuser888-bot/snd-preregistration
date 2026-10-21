@@ -10,7 +10,7 @@ import numpy as np
 MIN_RAW_BYTES = 64   # V2.0.10 (3.1): raw QRNG output >= 512 bits. The entropy requirement is separate (leak.seed_entropy_ok).
 
 
-def seed_material(raw: bytes, device_id: int, version: str = "2.0.10") -> bytes:
+def seed_material(raw: bytes, device_id: int, version: str = "2.0.11") -> bytes:
     """Protocol 3.1: seed material = R_d || device id || protocol version (R_d: raw QRNG bits, >= 512)."""
     if len(raw) < MIN_RAW_BYTES:
         raise ValueError("raw QRNG output must be >= 512 bits")

@@ -1,6 +1,8 @@
-# Project SND — Pre-registration Protocol V2.0.10, Reference Implementation and Validation Record
+# Project SND — Pre-registration Protocol V2.0.11, Reference Implementation and Validation Record
 
 **Status: pre-registration draft with reduced-scale simulation validation. No real experimental data exist or are included.**
+
+**Licences:** code = MIT; protocol, documents, results and metadata = CC BY 4.0 (not MIT). See `LICENSE`.
 
 ## What is being tested
 Whether a feature `x` that is **sealed first** is statistically dependent on a basis angle `θ` that is **assigned later by a fair random mechanism**. Under the null (θ independent of x) nothing is expected. The protocol specifies (i) a block-randomization test whose validity follows from the randomization design, and (ii) a one-sided amplitude upper confidence bound (Feldman–Cousins ordering of a Rice distribution). The protocol makes **no claim** about physical mechanisms; its interpretation layers (protocol §11) explicitly say that a rejection first calls for checks of the random number generator, assignment code, timestamps and analysis pipeline.
@@ -8,14 +10,15 @@ Whether a feature `x` that is **sealed first** is statistically dependent on a b
 ## Contents
 | Path | What it is |
 |---|---|
-| `protocol/SND_protocol_V2.0.10.md` | The pre-registration text (current). `protocol/history/` has V2.0.01–V2.0.09 |
-| `docs/audits/SND_audit_V1.0.08_to_V2.0.10.md` (+ earlier) | Claim-by-claim audit: each claim labelled proved / numerically supported / failed / unverified, with seeds and failure cases |
+| `protocol/SND_protocol_V2.0.11.md` | The pre-registration text (current). Same content as V2.0.10; only the formula markup was changed so that github.com renders it. `protocol/history/` has V2.0.01–V2.0.10 |
+| `docs/audits/SND_audit_V1.0.08_to_V2.0.11.md` (+ earlier) | Claim-by-claim audit: each claim labelled proved / numerically supported / failed / unverified, with seeds and failure cases |
 | `CHANGELOG.md` | Per-version record of errors/contradictions found, fixes, and changed verification methods (replaces publishing AI conversation logs; AI chats are not published) |
 | `docs/SND_evolution_for_everyone.md`, `docs/SND_evolution_summary.md` | Plain-language and technical development history |
 | `code/snd/` | Reference implementation: block angle generation (Philox, rejection-sampled permutations), two-way centred statistic, randomization test, FC–Rice table and UCB, exact κ, leakage sensitivity (`leak.py`: type-I curve e_I(β), coverage under bias, environment-projected test U_mon), reduced-scale acceptance simulation |
 | `code/tests/test_snd.py` | 18 tests (all pass, see below) |
 | `code/scripts/` | `build_table.py` (rebuilds FC–Rice table and checks the protocol's checkpoints), `reproduce_all.py` (headline numbers), `leak_tables.py` (analytic leakage curves → `results/leak_curves.json`), `check_numbers.py` (recomputes and asserts the closed-form numbers quoted in protocol §6/§12) |
 | `results/` | `fc_rice_table.npz` (SHA-256 below), `reproduce.json/.log`, `environment.txt` |
+| `LICENSE`, `LICENSES/`, `REUSE.toml` | Licence notice (which licence covers which path), full licence texts (MIT, CC BY 4.0) and the machine-readable per-file mapping |
 | `legacy/` | Original exploratory scripts with **known-issue notes** (not the reference implementation) |
 
 ## Reproduce
@@ -26,6 +29,8 @@ PYTHONPATH=. python scripts/build_table.py ../results/fc_rice_table.npz   # exit
 PYTHONPATH=. python tests/test_snd.py                                    # 18 PASS
 PYTHONPATH=. python scripts/leak_tables.py                               # leakage curves (instant)
 PYTHONPATH=. python scripts/check_numbers.py                             # exit 0 = protocol's closed-form numbers consistent
+PYTHONPATH=. python scripts/check_math.py                                # formula markup hygiene in all .md files (+ KaTeX parse if node and katex are installed)
+python scripts/check_licenses.py                                         # every file covered by exactly one licence (REUSE.toml), licence texts present
 PYTHONPATH=. python scripts/reproduce_all.py 1000                        # ~3 min, writes results/reproduce.json
 ```
 FC–Rice table SHA-256: `ee982331fd46e2adaac987e00d944c6fb7c652f9b5752ee2126f22c7db8f5f27` (the `.npz` file may differ byte-wise across numpy versions; the checkpoint values and acceptance-mass range are the verifiable content).
@@ -53,8 +58,15 @@ Multiple AI assistants (Claude, ChatGPT, Gemini) were used and made to cross-che
 * `legacy/` scripts include known errors (see `legacy/README.md`).
 
 ## Licence and citation
-Code: MIT (`LICENSE`). Documents: CC BY 4.0 (`LICENSE-DOCS.txt`). Cite via `CITATION.cff` (complete author name / ORCID before uploading).
+This repository is multi-licensed. Every file is under exactly one licence (see `LICENSE` and `REUSE.toml`; full texts in `LICENSES/`):
+
+| Licence | Applies to |
+|---|---|
+| MIT | `code/`, `legacy/`, `.github/`, `.gitignore` |
+| CC BY 4.0 | `protocol/`, `docs/`, `results/`, `metadata/`, `CITATION.cff`, `.zenodo.json`, `SHA256SUMS.txt`, and the top-level `README.md`, `CHANGELOG.md`, `VERSIONING.md`, `OSF_REGISTRATION_GUIDE.md` |
+
+GitHub's licence indicator can show only one licence per repository, so it cannot display this split; the protocol and the documents are **not** under the MIT licence. Cite via `CITATION.cff` (GitHub: "Cite this repository").
 
 ---
 ## 中文摘要
-本套件包含 SND 預註冊規範 V2.0.10、稽核紀錄（每項主張標示已證明／數值支持／未通過／未驗證）、經測試的參考實作與縮小規模驗證結果。**沒有任何真實實驗資料**；所有數值皆為模擬。核心保證：區塊隨機化檢定的第一類錯誤率在設計假設下精確成立（已證明）；上置信界的 95% 覆蓋率僅有縮小規模的模擬支持，尚未證明；已知反例（C 類硬體偏差）的後果由 §12 量化，可由已監測環境變數解釋的部分以精確檢定與閘門處理，未監測的殘餘只能以假設與實作稽核處理；其他未驗證項目列於上表與稽核檔。
+本套件包含 SND 預註冊規範 V2.0.11（內容同 V2.0.10，只修正公式在 GitHub 上的顯示）、稽核紀錄（每項主張標示已證明／數值支持／未通過／未驗證）、經測試的參考實作與縮小規模驗證結果。**沒有任何真實實驗資料**；所有數值皆為模擬。核心保證：區塊隨機化檢定的第一類錯誤率在設計假設下精確成立（已證明）；上置信界的 95% 覆蓋率僅有縮小規模的模擬支持，尚未證明；已知反例（C 類硬體偏差）的後果由 §12 量化，可由已監測環境變數解釋的部分以精確檢定與閘門處理，未監測的殘餘只能以假設與實作稽核處理；其他未驗證項目列於上表與稽核檔。
