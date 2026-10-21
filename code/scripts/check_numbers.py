@@ -1,4 +1,4 @@
-"""Recompute the closed-form numbers quoted in protocol V2.0.11 (sections 6, 10, 12) and assert them. Exit 0 = all consistent."""
+"""Recompute the closed-form numbers quoted in protocol V2.0.12 (sections 6, 10, 12) and assert them. Exit 0 = all consistent."""
 import os, sys
 import numpy as np
 from scipy import stats

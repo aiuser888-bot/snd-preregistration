@@ -9,19 +9,19 @@
 1. Author: currently the pen name `Pietersite` in `CITATION.cff`, `.zenodo.json`, `LICENSES/MIT.txt`, `REUSE.toml`. Optionally add a real name, ORCID and affiliation there before a Zenodo/OSF deposit.
 2. Confirm licences (MIT for code; CC BY 4.0 for protocol, documents, results and metadata — see `LICENSE` and `REUSE.toml`) or choose others. If you change them, update `LICENSE`, `LICENSES/`, `REUSE.toml`, `CITATION.cff` and the Zenodo `license` field together, then run `code/scripts/check_licenses.py`.
 3. Decide **embargo**: Zenodo allows an embargo date; OSF registrations can be embargoed (check the current maximum on OSF).
-4. Decide whether to publish V2.0.11 as is or after the open items are addressed. A registration is permanent; an honest version history is possible via new Zenodo versions.
+4. Decide whether to publish V2.0.12 as is or after the open items are addressed. A registration is permanent; an honest version history is possible via new Zenodo versions.
 5. Confirm the §12.5 seed-acquisition choices: option A (one seed per device, drawn once after the data freeze T_F), raw QRNG output ≥ 512 bits with a conservative min-entropy estimate × length ≥ 160 bits, the external time-stamp provider for H_F, and that θ is an analysis-time label (§12.5.5). If θ must be physically set during data collection, §12.5.1 does not apply.
 
 ## Zenodo (manual upload)
 1. Log in at zenodo.org → *New upload*.
-2. Upload `SND_release_V2.0.11.zip` (or the files individually). Zenodo shows each file's MD5; compare with `SHA256SUMS.txt`/the MD5 list if you wish.
-3. Metadata (copy from `metadata/zenodo.json`): Resource type *Publication → Report* (choose another type if you prefer), title, authors, description, keywords, licence, language, version `2.0.11`.
+2. Upload `SND_release_V2.0.12.zip` (or the files individually). Zenodo shows each file's MD5; compare with `SHA256SUMS.txt`/the MD5 list if you wish.
+3. Metadata (copy from `metadata/zenodo.json`): Resource type *Publication → Report* (choose another type if you prefer), title, authors, description, keywords, licence, language, version `2.0.12`.
 4. Related identifiers (optional): later add OSF project URL as "is supplemented by".
 5. *Save* → check preview → *Publish* (a DOI is assigned; publishing cannot be undone, files can only be superseded by a new version).
 Alternative: put `snd_release/` in a GitHub repository, enable the repository in Zenodo's GitHub integration, and create a release; Zenodo reads `.zenodo.json`/`CITATION.cff`.
 
 ## OSF Preregistration — suggested answers (English, adapt as needed)
-**Title**: Project SND: block-randomization test and one-sided amplitude upper confidence bound for dependence between sealed features and later random basis angles (protocol V2.0.11).
+**Title**: Project SND: block-randomization test and one-sided amplitude upper confidence bound for dependence between sealed features and later random basis angles (protocol V2.0.12).
 
 **Description / hypotheses**: H0: the later randomly assigned angle θ is statistically independent of the sealed feature x. Alternative (modelling device only): p1(x|θ;a,b) = p0(x)[1 + f(x)(a cosθ + b sinθ)], r = |a+ib| ≤ 1e-3. Primary decision: randomization p-value ≤ 0.05. Secondary: 95% one-sided upper confidence bound on r; exclusion of r ≥ 1e-4 if the bound is below 1e-4 and p > 0.05.
 

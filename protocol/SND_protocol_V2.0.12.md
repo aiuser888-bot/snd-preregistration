@@ -1,4 +1,4 @@
-# Project SND — 預註冊規範 V2.0.11（內容與 V2.0.10 相同，只把公式分隔符改成 GitHub 能渲染的寫法；數學、程序與數字皆未改動。V2.0.10 = V2.0.09 + §12.5 定案選項 A：全部 x 凍結後一次性取得種子；新增引理 5（種子通道的可證明上界）；§0／§3／§10／§11／§12 連動改寫；狀態與證據見 SND_audit_V1.0.08_to_V2.0.11.md 與 SND_audit_V1.0.08_to_V2.0.10.md；V2.0.01–V2.0.10 原檔保留於 protocol/history/）
+# Project SND — 預註冊規範 V2.0.12（內容與 V2.0.10 相同，只改公式的書寫方式：V2.0.11 把公式分隔符改成 GitHub 能渲染的寫法；V2.0.12 再把橫線符號與「帶重音符號的量加平方」改成 GitHub 上排版正常的寫法；數學、程序與數字皆未改動。V2.0.10 = V2.0.09 + §12.5 定案選項 A：全部 x 凍結後一次性取得種子；新增引理 5（種子通道的可證明上界）；§0／§3／§10／§11／§12 連動改寫；狀態與證據見 SND_audit_V1.0.08_to_V2.0.12.md、SND_audit_V1.0.08_to_V2.0.11.md 與 SND_audit_V1.0.08_to_V2.0.10.md；V2.0.01–V2.0.11 保留於 protocol/history/）
 
 目標：數學定義正確、估計程序可實作、第一類錯誤率與覆蓋率主張成立。
 設計原則：**顯著性檢定（§4）在 A1 成立時只依賴區塊隨機化設計本身**，不依賴對觀測資料分佈的建模；**A1 本身是物理／實作假設，無法由資料證明**，其被破壞的後果由 §12 量化，可由已監測環境變數解釋的部分由 §12 的精確檢定與閘門處理，其餘（未監測通道）在註冊的種子取得程序（§12.5）下被約化為兩條假設（E1 資料可檢、E2 物理假設）並由引理 5 給出上界，仍不是統計結論；**置信上界（§5）另需 H₁ 現象學模型（A3／A3′）與大樣本（CLT）近似**，其覆蓋率由 §7 的縮小規模模擬驗收，不是設計保證的。
@@ -19,18 +19,18 @@
 
 ## 1. 資料集與凍結
 
-- 探索集與驗證集物理隔離。探索集決定：算符 $`T`$、$`\widehat f`$、$`\widehat p_0`$、$`\sigma_f^2=\int\widehat p_0\widehat f^2`$（規劃用；實際 $`V`$ 由驗證集的 $`x`$ 計算，不依賴它）。驗證期間不得更改。
+- 探索集與驗證集物理隔離。探索集決定：算符 $`T`$、$`\widehat f`$、$`\widehat p_0`$、$`\sigma_f^2=\int\widehat p_0(\widehat f)^2`$（規劃用；實際 $`V`$ 由驗證集的 $`x`$ 計算，不依賴它）。驗證期間不得更改。
 - 篩選（若有）只能依 $`x`$ 側的硬體旗標，且在 $`T_F`$ 之前完成（§3.3）。
 
 ## 2. 統計量（唯一定義）
 
-**雙向中心化（只用 $`x`$，在 $`T_F`$ 之前完成並凍結）。** 全部區塊收集完畢後：$`\bar f_b=L^{-1}\sum_if_{b,i}`$，$`\widehat g_j=K^{-1}\sum_b(f_{b,j}-\bar f_b)`$（區塊內位置 $`j`$ 的共同剖面），
-$`\widetilde f_{b,j}=f_{b,j}-\bar f_b-\widehat g_j`$，再對每區塊扣除其列平均 $`\bar{\widetilde f}_b`$（記為 $`\widetilde f`$，此後 $`\sum_j\widetilde f_{b,j}=0`$）。
+**雙向中心化（只用 $`x`$，在 $`T_F`$ 之前完成並凍結）。** 全部區塊收集完畢後：$`\overline{f}_b=L^{-1}\sum_if_{b,i}`$，$`\widehat g_j=K^{-1}\sum_b(f_{b,j}-\overline{f}_b)`$（區塊內位置 $`j`$ 的共同剖面），
+$`\widetilde f_{b,j}=f_{b,j}-\overline{f}_b-\widehat g_j`$，再對每區塊扣除其列平均 $`\overline{\widetilde f}_b`$（記為 $`\widetilde f`$，此後 $`\sum_j\widetilde f_{b,j}=0`$）。
 **前提**：各區塊的「角度→位置」指派必須彼此獨立（§3.1 的均勻隨機排列）。若各區塊在同一位置使用相同角度，$`\widehat g_j`$ 會把信號一併扣除，功效歸零；隨機排列下 $`\widehat g_j`$ 只含 $`O(K^{-1/2})`$ 的信號成分，使 $`V`$ 減少約 $`1/K`$。
 
 對每個區塊：
 
-$`U_b=\sum_{i=1}^{L}\widetilde f_{b,i}\,e^{\mathrm{i}\theta_{b,i}}\in\mathbb C,\qquad S_b^2=\sum_{i=1}^{L}\widetilde f_{b,i}^{\,2},\qquad V_b=\dfrac{L}{2(L-1)}S_b^2`$
+$`U_b=\sum_{i=1}^{L}\widetilde f_{b,i}\,e^{\mathrm{i}\theta_{b,i}}\in\mathbb C,\qquad S_b^2=\sum_{i=1}^{L}(\widetilde f_{b,i})^{2},\qquad V_b=\dfrac{L}{2(L-1)}S_b^2`$
 
 全體：$`U=\sum_bU_b`$，$`V=\sum_bV_b`$。
 
@@ -54,10 +54,10 @@ $`\boxed{\Lambda=\dfrac{|U|^2}{V}}`$，$`\quad\widehat\mu=\dfrac{U}{V}`$（$`\ze
 
 **引理 2（序列相關）。** 令 $`f`$ 在 $`H_0`$ 下區塊內平穩、均值 $`m`$、變異 $`\sigma_f^2`$、自相關 $`\rho_k`$，$`S_L=\sum_{k=1}^{L-1}(1-k/L)\rho_k`$，$`\kappa=(L-1-2S_L)/(L-1)`$。三個易混淆的概念明確區分：**(α) 區塊獨立**（不同區塊的 $`x`$ 獨立，A3′ 假設）；**(β) 零協方差**（$`\mathrm{Cov}(U_b,U_{b'})=0`$，是結論，只需期望為零，不需獨立）；**(γ) 區塊內隨機排列**（引理 1 的條件變異數需要它；與 (α)(β) 無關）。
 (i)〔H₁ 下，邊際傾斜〕$`\mathbb E[U_b]=\tfrac L2\sigma_f^2\zeta`$（精確；僅欄中心化造成 $`O(1/K)`$ 偏離）。
-(ii)〔**H₀ 下已證明**〕$`\mathrm{Var}(\mathrm{Re}\,U_b)=\mathrm{Var}(\mathrm{Im}\,U_b)=\mathbb E[V_b]=\tfrac{L}{2(L-1)}\sigma_f^2\bigl(L-1-2S_L\bigr)=\tfrac L2\sigma_f^2\kappa`$。證明：由引理 1，條件於 $`x`$，$`\mathbb E[U_b\mid x]=0`$、$`\mathrm{Var}(\mathrm{Re}U_b\mid x)=V_b`$；全變異數定律給 $`\mathrm{Var}(\mathrm{Re}U_b)=\mathbb E[V_b]`$；平穩下 $`\mathbb E\sum_j(f_j-\bar f)^2=L\sigma_f^2-L\,\mathrm{Var}(\bar f)=\sigma_f^2(L-1-2S_L)`$（用 $`L^2\mathrm{Var}(\bar f)=\sigma_f^2(L+2\sum_{k}(L-k)\rho_k)`$）。此式只用 (γ) 與平穩性，**不需** Gaussian copula。H₁ 下僅為近似（$`O(r)`$）。（此處 $`V_b`$ 為列中心化的 $`V_b`$；與雙向中心化的差為 $`O(1/K)`$，數值見 `r15.py`。）
+(ii)〔**H₀ 下已證明**〕$`\mathrm{Var}(\mathrm{Re}\,U_b)=\mathrm{Var}(\mathrm{Im}\,U_b)=\mathbb E[V_b]=\tfrac{L}{2(L-1)}\sigma_f^2\bigl(L-1-2S_L\bigr)=\tfrac L2\sigma_f^2\kappa`$。證明：由引理 1，條件於 $`x`$，$`\mathbb E[U_b\mid x]=0`$、$`\mathrm{Var}(\mathrm{Re}U_b\mid x)=V_b`$；全變異數定律給 $`\mathrm{Var}(\mathrm{Re}U_b)=\mathbb E[V_b]`$；平穩下 $`\mathbb E\sum_j(f_j-\overline{f})^2=L\sigma_f^2-L\,\mathrm{Var}(\overline{f})=\sigma_f^2(L-1-2S_L)`$（用 $`L^2\mathrm{Var}(\overline{f})=\sigma_f^2(L+2\sum_{k}(L-k)\rho_k)`$）。此式只用 (γ) 與平穩性，**不需** Gaussian copula。H₁ 下僅為近似（$`O(r)`$）。（此處 $`V_b`$ 為列中心化的 $`V_b`$；與雙向中心化的差為 $`O(1/K)`$，數值見 `r15.py`。）
 (iii)〔**已證明**〕不同區塊 $`\mathrm{Cov}(U_b,U_{b'})=0`$：區塊的排列相互獨立（γ）且每個位置的角度 $`\theta_{b,j}`$ 在均勻排列下是等間隔集合的均勻抽樣，$`\mathbb E e^{\mathrm i\theta_{b,j}}=0`$（不需 $`\alpha_b`$ 均勻），故 $`\mathbb E[U_b\overline{U_{b'}}]=\sum_{j,j'}\mathbb E[f_{b,j}f_{b',j'}]\mathbb E[e^{\mathrm i\theta_{b,j}}]\overline{\mathbb E[e^{\mathrm i\theta_{b',j'}}]}=0`$。這是零協方差，**不等於**獨立：若各區塊共用同一 $`x`$ 序列的緩慢成分，$`U_b`$ 的幅度仍可相依（`r15.py`：區塊均值相關 0.976 時 $`U`$ 跨區塊相關係數 0.0026±0.004，與零一致）。因 CLT 針對 $`K`$ 個和使用，總變異數仍為各區塊之和。
 (iv)〔**一階近似，數值支持；V2.0.04–V2.0.06 的 $`\nu/\sqrt\kappa`$ 與門檻寫法已更正**〕令 $`\nu=r/\widehat\sigma=r\sqrt V`$（以**實際** $`V`$ 定義，與 §5 相同，也是覆蓋事件的門檻）。$`V`$ 相對波動 $`O(K^{-1/2})`$，由 (i)(ii)：$`\mathbb E U=\tfrac N2\sigma_f^2 r`$、$`V\approx\tfrac N2\sigma_f^2\kappa`$，故 $`\mathbb E[\widehat\mu]\approx\zeta/\kappa`$，$`\widehat x=|U|/\sqrt V\approx\mathrm{Rice}(\nu_{\rm eff})`$，$`\nu_{\rm eff}=\nu/\kappa`$。覆蓋事件為 $`\nu\le u(\widehat x)`$，故覆蓋率 $`\approx\mathrm{ncx2.sf}\bigl(x_{\min}(\nu)^2;\,2,\,(\nu/\kappa)^2\bigr)`$，$`x_{\min}(\nu)`$ 為使 $`u(x)\ge\nu`$ 的最小 $`x`$。若改以 iid 的 $`\sigma_0`$ 定義 $`\nu_0=r/\sigma_0`$，則 $`\nu=\nu_0\sqrt\kappa`$、$`\nu_{\rm eff}=\nu_0/\sqrt\kappa`$，但門檻仍是 $`x_{\min}(\nu_0\sqrt\kappa)`$（舊式把門檻寫成 $`x_{\min}(\nu_0)`$，已更正）。此為預測式，非定理。$`\kappa<1`$ 使 $`\nu_{\rm eff}>\nu`$（UCB 偏保守、同一 $`V`$ 下功效較高）。
-(v)〔**已證明**〕$`\mathrm{Var}(\bar f)\ge0\Rightarrow1+2S_L\ge0\Rightarrow\kappa\le1+1/(L-1)`$（$`L=10^4`$ 時 $`1.0001`$）；$`\kappa>1`$ 的反向（不保守）效應因此不超過 $`1/(L-1)`$（相對）。
+(v)〔**已證明**〕$`\mathrm{Var}(\overline{f})\ge0\Rightarrow1+2S_L\ge0\Rightarrow\kappa\le1+1/(L-1)`$（$`L=10^4`$ 時 $`1.0001`$）；$`\kappa>1`$ 的反向（不保守）效應因此不超過 $`1/(L-1)`$（相對）。
 (vi)〔**跨區塊／跨設備相依；超出 A3′ 的區塊獨立假設，僅 H₀ 為定理**〕H₀ 下條件於全部 $`x`$，各區塊的排列相互獨立，故 $`\mathrm{Var}(\mathrm{Re}U\mid x)=\sum_bV_b`$ **精確**成立，與 $`x`$ 跨區塊的任何相依無關；條件分佈是獨立區塊分數之和（可用 Lyapunov／Berry–Esseen）。因此跨設備相關不影響 H₀ 的檢定有效性，也不影響 $`V`$ 作為 $`\mathrm{Var}(U)`$ 的估計。H₁ 下的 $`\kappa`$ 閉式只涵蓋區塊內相關；跨區塊共享成分會使 $`\mathbb E[V]`$ 變小（$`\kappa_{\rm emp}`$ 0.41–0.70），而 UCB 仍使用實際 $`V`$，覆蓋率偏保守（`r20.py`，$`\nu=3`$，$`R=1500`$：0.9713/0.9980/0.9993/1.0000）。
 **證據**（雙點 $`f\in\{1,-0.25\}`$，Bernoulli(0.2)，$`\sigma_f^2=0.25`$；AR(1) 潛變數；覆蓋率預測一律用 (iv) 更正後的式子）：
 - κ 封閉式（`r16.py`，雙變量常態象限機率）：$`\rho_{\rm latent}\in\{-0.9,-0.6,0,0.6,0.9\}`$，$`L{=}100,K{=}400`$ 與 $`L{=}400,K{=}100`$，各 1500 次，以真 $`\sigma_f^2=0.25`$ 歸一，與模擬差 $`\le0.0005`$（$`\le1.7`$ SE）。
@@ -93,7 +93,7 @@ $`\widehat p=\dfrac{1+\#\{m:\Lambda_m\ge\Lambda_{\rm obs}\}}{M_{\rm perm}+1}`$�
 
 ## 5. 振幅上置信界（FC–Rice 單邊界）
 
-令 $`\widehat x=\widehat r/\widehat\sigma=|U|/\sqrt V`$。大樣本下（$`K\approx10^6`$ 個獨立區塊分數之和，CLT）：$`\widehat x^2\sim`$ 非中心 $`\chi^2_2`$，非中心參數 $`\nu^2`$，$`\nu=r/\widehat\sigma`$；即 $`\widehat x\sim\mathrm{Rice}(\nu,1)`$，密度 $`p(x\mid\nu)=x\,e^{-(x^2+\nu^2)/2}I_0(x\nu)`$。**實際規模的 CLT 檢查（`r20.py`，$`L=10^4`$）**：單一區塊分數（H₀、條件於 $`x`$）的超額峰度 Bernoulli(0.2) +0.006±0.035、重尾 $`t_3`$ −0.015±0.035，$`K=10^6`$ 個獨立區塊相加後的超額峰度 $`\lesssim10^{-7}`$；Berry–Esseen 上界（以近高斯的三階矩 1.6 估計）每座標約 $`0.56\times1.6/\sqrt K\approx9\times10^{-4}`$。H₁ 的 $`\mathbb E[U\mid x]`$ 部分與一般 $`f`$ 的高階矩未涵蓋。標籤：H₀、條件於 $`x`$ 時有定理支持＋數值確認；H₁ 為近似。
+令 $`\widehat x=\widehat r/\widehat\sigma=|U|/\sqrt V`$。大樣本下（$`K\approx10^6`$ 個獨立區塊分數之和，CLT）：$`(\widehat x)^2\sim`$ 非中心 $`\chi^2_2`$，非中心參數 $`\nu^2`$，$`\nu=r/\widehat\sigma`$；即 $`\widehat x\sim\mathrm{Rice}(\nu,1)`$，密度 $`p(x\mid\nu)=x\,e^{-(x^2+\nu^2)/2}I_0(x\nu)`$。**實際規模的 CLT 檢查（`r20.py`，$`L=10^4`$）**：單一區塊分數（H₀、條件於 $`x`$）的超額峰度 Bernoulli(0.2) +0.006±0.035、重尾 $`t_3`$ −0.015±0.035，$`K=10^6`$ 個獨立區塊相加後的超額峰度 $`\lesssim10^{-7}`$；Berry–Esseen 上界（以近高斯的三階矩 1.6 估計）每座標約 $`0.56\times1.6/\sqrt K\approx9\times10^{-4}`$。H₁ 的 $`\mathbb E[U\mid x]`$ 部分與一般 $`f`$ 的高階矩未涵蓋。標籤：H₀、條件於 $`x`$ 時有定理支持＋數值確認；H₁ 為近似。
 $`V`$ 視為給定（其相對波動 $`O(K^{-1/2})`$）；序列相關時 $`\widehat x`$ 的非中心參數為 $`\nu_{\rm eff}=\nu/\kappa`$，覆蓋事件的門檻仍是 $`\nu=r/\widehat\sigma`$（引理 2(iv)）。
 
 ### 5.1 離線表格（與資料無關，前置計算並公開）
@@ -114,7 +114,7 @@ $`\boxed{\mathrm{UCB}_{95}=\widehat\sigma\cdot u(\widehat x)}`$
 
 停止規則：以區塊為單位持續收集，**當 $`V\ge V_{\rm target}`$ 時停止**；$`V_{\rm target}=1.5\times10^{9}`$（V2.0.09 由 $`1.375\times10^9`$ 提高，原因見本節「為何由…提高」一條）。
 
-$`V`$ 只依賴 $`x`$，停止規則因此與 $`\theta`$ 無關，不破壞 §4 的有效性。停止判定使用列中心化的 $`V^{\rm row}=\sum_b\frac{L}{2(L-1)}\sum_j(f_{b,j}-\bar f_b)^2`$（收集期間即可計算）；分析使用最終雙向中心化的 $`V`$（相對差 $`O(1/K)`$，$`K=10^6`$ 時約 $`10^{-6}`$；若最終 $`V<V_{\rm target}`$ 仍照常分析並如實報告 $`T`$）。
+$`V`$ 只依賴 $`x`$，停止規則因此與 $`\theta`$ 無關，不破壞 §4 的有效性。停止判定使用列中心化的 $`V^{\rm row}=\sum_b\frac{L}{2(L-1)}\sum_j(f_{b,j}-\overline{f}_b)^2`$（收集期間即可計算）；分析使用最終雙向中心化的 $`V`$（相對差 $`O(1/K)`$，$`K=10^6`$ 時約 $`10^{-6}`$；若最終 $`V<V_{\rm target}`$ 仍照常分析並如實報告 $`T`$）。
 
 依據（前置計算，無量綱）：$`T=r_{\min}\sqrt V`$。在 $`V_{\rm target}`$ 時 $`T=3.873`$；
 
@@ -123,12 +123,12 @@ $`V`$ 只依賴 $`x`$，停止規則因此與 $`\theta`$ 無關，不破壞 §4 
 - 達到 0.80 排除機率的臨界值為 $`V\approx1.248\times10^9`$（$`T=3.533`$）；$`V_{\rm target}`$ 對**未加閘門**的數值餘裕 20%。**加上 §12.3 閘門後**（誤報率 0.05），淨值為：$`H_0`$ 下淨排除機率 0.846–0.869（$`\eta\to0`$–0.75）、$`r=r_{\min}`$ 淨功效 0.897–0.902；淨排除機率 0.80 的臨界 $`V\approx1.35\times10^9`$，餘裕約 11%（見 §12.3 性質 4）。
 - **為何由 $`1.375\times10^9`$ 提高到 $`1.5\times10^9`$**：V2.0.08 加入閘門後，舊 $`V_{\rm target}`$ 的淨餘裕只剩約 2%，不足以吸收解析近似的誤差（同一公式在縮小規模的解析與模擬差可達 0.004）。此餘裕針對的是**機率的近似誤差**；$`\sigma_f^2`$ 與採集速率只影響工期（停止規則依 $`V`$），不影響餘裕。代價：$`N`$ 與工期增加 9%，可行性閘門的 $`\sigma_f^2`$ 門檻由 0.092 升到 0.100。
 
-$`V`$ 與 $`N`$ 的關係：對 iid $`x`$、$`\sigma_f^2=\mathbb E[\widehat f^2]`$，$`\mathbb E[V]=\tfrac12N\sigma_f^2(1-1/K)`$（兩種規模模擬：$`L{=}100,K{=}400`$：4987.78±0.69 對公式 4987.50；$`L{=}50,K{=}20`$：118.75±0.11 對 118.75）；序列相關下 $`\mathbb E[V]=\tfrac12N\sigma_f^2\kappa(1-1/K)`$（引理 2，$`\kappa`$ 封閉式已驗證）。
+$`V`$ 與 $`N`$ 的關係：對 iid $`x`$、$`\sigma_f^2=\mathbb E[(\widehat f)^2]`$，$`\mathbb E[V]=\tfrac12N\sigma_f^2(1-1/K)`$（兩種規模模擬：$`L{=}100,K{=}400`$：4987.78±0.69 對公式 4987.50；$`L{=}50,K{=}20`$：118.75±0.11 對 118.75）；序列相關下 $`\mathbb E[V]=\tfrac12N\sigma_f^2\kappa(1-1/K)`$（引理 2，$`\kappa`$ 封閉式已驗證）。
 預期規模：$`N\approx 2V/(\sigma_f^2\kappa)`$（$`1-1/K`$ 修正在 $`K=10^6`$ 可忽略）；$`\sigma_f^2=0.25`$ 時 $`N\approx1.2\times10^{10}`$，4 台設備、$`\Delta T_{\rm wait}=10`$ ms，不含停機約 11.4 個月。
 **$`\sigma_f^2`$ 敏感度**（$`\kappa=1`$，4 台、10 ms，不含停機）：$`\sigma_f^2=0.25/0.15/0.10/0.05`$ → $`N\approx1.2\times10^{10}/2.0\times10^{10}/3.0\times10^{10}/6.0\times10^{10}`$，工期約 11.4/19.0/28.5/57 個月（與 $`1/\sigma_f^2`$ 成正比）。$`\sigma_f^2\le1`$，能否達 0.25 取決於探索集上 $`\widehat f`$ 的表現，**目前無資料可驗證**。探索集凍結時必須寫入：實測 $`\sigma_f^2`$（以及驗證集期中盲態的再估計）、對應 $`N`$ 與工期。
 
 - **啟動前可行性閘門（只依探索集，唯一的最長工期規則）**：預測 $`N>N_{\max}=3\times10^{10}`$（約 28.5 個月，對應 $`\sigma_f^2\gtrsim0.100`$）則不啟動；要改變 $`N_{\max}`$、設備數或 $`\Delta T_{\rm wait}`$ 須在啟動前修訂並重新鎖定本規範，**不得放寬 $`r_{\min}`$**。
-- **10% 期中盲態檢查**：只用 $`x`$，僅用於更新工期預測（同時回報實際採集速率與 $`\widehat\sigma_f^2`$），不改變 $`V_{\rm target}`$，也不參與任何顯著性或排除判定。
+- **10% 期中盲態檢查**：只用 $`x`$，僅用於更新工期預測（同時回報實際採集速率與 $`(\widehat\sigma_f)^2`$），不改變 $`V_{\rm target}`$，也不參與任何顯著性或排除判定。
 - **上限**：收集到 $`N_{\max}`$ 仍 $`V<V_{\rm target}`$ 時，以實得 $`V`$ 分析；規則一（排除）僅在該 $`V`$ 下實際 $`\mathrm{UCB}_{95}<r_{\min}`$ 時成立，其餘依表格；並報告實得 $`T=r_{\min}\sqrt V`$。
 
 ## 7. 前置驗收（縮小規模，公開完整程式碼）
@@ -174,7 +174,7 @@ $`V`$ 與 $`N`$ 的關係：對 iid $`x`$、$`\sigma_f^2=\mathbb E[\widehat f^2]
 | $`\widehat p\le0.05`$，未重現 | 拒絕 $`H_0`$。宣告待驗證的統計異常，啟動資料與硬體洩漏排查。若同時 $`\mathrm{UCB}_{95}<10^{-4}`$，另註明估計振幅低於 $`r_{\min}`$。 |
 | $`\widehat p\le0.05`$，且獨立實驗室重現 | 發現可重現的指定型態統計依賴。 |
 
-**重現成功的定義**（已鎖定：(ii) 取 $`\chi^2_{2,0.95}`$）：重現實驗室使用相同的 $`\widehat f`$、區塊設計、$`\theta`$ 零點與統計量，達到 $`V_{\rm rep}\ge V_{\rm target}`$（機台數與工期不限）；且 (i) $`\widehat p_{\rm rep}\le0.05`$；(ii) $`|\widehat\mu_{\rm rep}-\widehat\mu_{\rm orig}|^2/(\widehat\sigma_{\rm rep}^2+\widehat\sigma_{\rm orig}^2)\le\chi^2_{2,0.95}=5.991`$；(iii) 重現實驗室自己的 §12.3 閘門通過（$`\widehat p_{\rm mon,rep}>0.05`$，類別分割採預註冊的同一份建構程序，套用於重現實驗室自己的環境紀錄）。重現實驗室**獨立執行 §12.5.1**（自己的 $`T_F`$ 與 QRNG 種子；不使用原實驗室的種子或 θ）。
+**重現成功的定義**（已鎖定：(ii) 取 $`\chi^2_{2,0.95}`$）：重現實驗室使用相同的 $`\widehat f`$、區塊設計、$`\theta`$ 零點與統計量，達到 $`V_{\rm rep}\ge V_{\rm target}`$（機台數與工期不限）；且 (i) $`\widehat p_{\rm rep}\le0.05`$；(ii) $`|\widehat\mu_{\rm rep}-\widehat\mu_{\rm orig}|^2/((\widehat\sigma_{\rm rep})^2+(\widehat\sigma_{\rm orig})^2)\le\chi^2_{2,0.95}=5.991`$；(iii) 重現實驗室自己的 §12.3 閘門通過（$`\widehat p_{\rm mon,rep}>0.05`$，類別分割採預註冊的同一份建構程序，套用於重現實驗室自己的環境紀錄）。重現實驗室**獨立執行 §12.5.1**（自己的 $`T_F`$ 與 QRNG 種子；不使用原實驗室的種子或 θ）。
 
 **重現成功機率（只含 (i)(ii)，未計閘門 (iii)）**（高斯大 $`K`$ 模型，$`M=4\times10^6`$，種子 `[20261032,2,15]`（`r22.py`；V2.0.08 以前的 $`\nu=3.708`$ 結果以 `[20261019,1]`、`[20261021,1]` 產生，`r22.py` 以新種子重現為 0.888／0.956）；條件於原實驗顯著；原實驗真效應 $`r=r_{\min}`$、$`\nu=3.873`$；$`\theta`$ 零點假設完全對齊）：
 - 真效應相同：$`V_{\rm rep}=V_{\rm orig}`$ 時 0.907；$`2V_{\rm orig}`$ 時 0.956。(ii) 在真效應下仍有約 5% 不合格，與效應大小無關。
@@ -228,15 +228,15 @@ $`V`$ 與 $`N`$ 的關係：對 iid $`x`$、$`\sigma_f^2=\mathbb E[\widehat f^2]
 
 ### 12.2 引理 4（環境投影統計量）
 
-**定義。** 類別 $`c(b,i)\in\{1,\dots,C\}`$ 只由環境紀錄決定（**不含 $`\theta`$；建議也不含 $`x`$**：$`H_1`$ 下 $`x`$ 依賴 $`\theta`$，類別若用 $`x`$ 則精確性只在 $`H_0`$ 下成立），且**只用 $`T_F`$ 之前取得的環境紀錄**（$`T_F`$ 之前 θ 尚不存在，這些紀錄不可能是 θ 的後果；$`T_F`$ 之後的紀錄可能是種子取得程序的後果，不使用）；類別定義或其由探索集產生的程序在預註冊時鎖定；$`n_c=\#\{i:c(i)=c\}`$（建議每類 $`n_c\ge10^4`$）。$`F_c=\sum_{i\in c}\widetilde f_i`$，$`\bar Q_c=n_c^{-1}\sum_{i\in c}e^{\mathrm i\theta_i}`$，
+**定義。** 類別 $`c(b,i)\in\{1,\dots,C\}`$ 只由環境紀錄決定（**不含 $`\theta`$；建議也不含 $`x`$**：$`H_1`$ 下 $`x`$ 依賴 $`\theta`$，類別若用 $`x`$ 則精確性只在 $`H_0`$ 下成立），且**只用 $`T_F`$ 之前取得的環境紀錄**（$`T_F`$ 之前 θ 尚不存在，這些紀錄不可能是 θ 的後果；$`T_F`$ 之後的紀錄可能是種子取得程序的後果，不使用）；類別定義或其由探索集產生的程序在預註冊時鎖定；$`n_c=\#\{i:c(i)=c\}`$（建議每類 $`n_c\ge10^4`$）。$`F_c=\sum_{i\in c}\widetilde f_i`$，$`\overline{Q}_c=n_c^{-1}\sum_{i\in c}e^{\mathrm i\theta_i}`$，
 ```math
-U_{\rm mon}=\sum_{c}F_c\,\bar Q_c .
+U_{\rm mon}=\sum_{c}F_c\,\overline{Q}_c .
 ```
 (a)〔**定理**〕A1 下，條件於 $`G`$（類別是 $`G`$-可測），觀測的 $`U_{\rm mon}`$ 與依 §3.1 重抽 $`\theta`$ 得到的 $`U^{(m)}_{\rm mon}`$ 可交換；故 $`\widehat p_{\rm mon}=\dfrac{1+\#\{m:|U^{(m)}_{\rm mon}|\ge|U_{\rm mon}|\}}{M_{\rm perm}+1}`$ 滿足 $`P(\widehat p_{\rm mon}\le\alpha\mid G)\le\alpha`$（精確；$`M_{\rm perm}=1999,\alpha=0.05`$ 時恰為 0.05）。證明與 §4 相同；此處不能用固定 $`V`$ 的化簡，統計量直接取 $`|U_{\rm mon}|`$。
-(b)〔**精確**〕$`\mathbb E[U_{\rm mon}\mid G]=\sum_cF_c\bar q_c=:B_{\rm mon}`$（$`\bar q_c`$ 為類別內 $`q`$ 的平均）。故 $`B=B_{\rm mon}+B_{\rm res}`$，$`B_{\rm res}=\sum_i\widetilde f_i(q_i-\bar q_{c(i)})`$；記 $`\beta_{\rm mon}=|B_{\rm mon}|/\sqrt V`$、$`\beta_{\rm res}=|B_{\rm res}|/\sqrt V`$。
+(b)〔**精確**〕$`\mathbb E[U_{\rm mon}\mid G]=\sum_cF_c\overline{q}_c=:B_{\rm mon}`$（$`\overline{q}_c`$ 為類別內 $`q`$ 的平均）。故 $`B=B_{\rm mon}+B_{\rm res}`$，$`B_{\rm res}=\sum_i\widetilde f_i(q_i-\overline{q}_{c(i)})`$；記 $`\beta_{\rm mon}=|B_{\rm mon}|/\sqrt V`$、$`\beta_{\rm res}=|B_{\rm res}|/\sqrt V`$。
 (c)〔**近似，已驗證**〕A1 下 $`\mathrm{Var}(\mathrm{Re}\,U_{\rm mon}\mid G)\approx\eta^2V`$，其中
 ```math
-\eta^2=\frac{\sum_cF_c^2/n_c}{\sum_i\widetilde f_i^{\,2}}\in[0,1]
+\eta^2=\frac{\sum_cF_c^2/n_c}{\sum_i(\widetilde f_i)^{2}}\in[0,1]
 ```
 （類別均值所解釋的 $`\widetilde f`$ 能量比例，**資料前即可由 $`x`$ 與類別算出**）。$`U_{\rm mon}`$ 與 $`U-U_{\rm mon}`$ 不相關，$`\mathrm{corr}(U,U_{\rm mon})=\eta`$。H₁ 的真訊號對 $`U_{\rm mon}`$ 的貢獻為 $`O(1/n_c)`$，可忽略（模擬：不敏感）。
 (d)〔**近似**〕$`\beta_{\rm mon}`$ 的 95% 上界 $`\beta_{\rm mon}^{\rm ub}=\bigl(|U_{\rm mon}|+\sqrt{\chi^2_{2,0.95}}\,\widehat s_{\rm mon}\bigr)/\sqrt V`$，$`\widehat s_{\rm mon}=\bigl(\tfrac1{2M_{\rm perm}}\sum_m|U^{(m)}_{\rm mon}|^2\bigr)^{1/2}`$（三角不等式，保守）。**解析度下限**：$`\beta_{\rm mon}^{\rm ub}\ge2.448\,\eta`$，所以無法證明 $`\beta_{\rm mon}`$ 小於約 $`2.4\eta`$；例如 $`\eta=0.25`$ 時只能證明 $`\beta_{\rm mon}\lesssim0.6`$。
@@ -303,10 +303,10 @@ D_G=\mathbb E_0[(\ell-1)^2]=\chi^2(P_G\Vert P_0)=2^{\lambda\,n_{\rm dev}}\textst
 **範圍。** 以下是 $`H_0`$（$`x`$ 的產生不參照 θ，故 $`P_{S|G}`$ 對均勻的偏離只能來自洩漏）下的陳述；$`H_1`$ 下 $`P_{S|G}`$ 的偏離也包含真訊號，$`D_G`$ 不再只度量洩漏，覆蓋率改用引理 3(c) 的一階可加近似（見 (c) 末）。
 **理想化 (I)**：$`S\sim P_0`$ 時，觀測與 $`M_{\rm perm}`$ 次重抽的 θ 是 §3.1 設計律的獨立抽樣（Philox 輸出視為理想隨機函數）；這是 §4 精確性本來就需要的前提，此處明文使用。**(H)**：SHA-256 截取被模型化為 2-universal 雜湊族的成員。
 
-(a)〔**精確**，只用設計〕設計律下 $`\mathbb E_0[U\mid G]=0`$、$`\mathbb E_0[U^2\mid G]=0`$、$`\mathbb E_0|U|^2=2V`$；故對任意單位複數 $`w`$，$`\mathbb E_0[(\mathrm{Re}\,\bar wU)^2]=V`$。
-證明：$`\alpha_b`$ 均勻 ⇒ $`\mathbb EU_b=\mathbb EU_b^2=0`$；同一區塊兩個不同位置的角差為 $`2\pi k/L`$（$`k`$ 在非零剩餘上均勻），$`\mathbb Ee^{\mathrm i(\theta_j-\theta_k)}=-1/(L-1)`$（$`j\ne k`$），故 $`\mathbb E|U_b|^2=\sum_j\widetilde f_j^2-\tfrac1{L-1}\bigl[(\sum_j\widetilde f_j)^2-\sum_j\widetilde f_j^2\bigr]=\tfrac L{L-1}\sum_j\widetilde f_j^2=2V_b`$（$`\sum_j\widetilde f_j=0`$）；區塊獨立；$`(\mathrm{Re}\,\bar wU)^2=\tfrac12|U|^2+\tfrac12\mathrm{Re}(\bar w^2U^2)`$。
-(b)〔**定理，(I) 下**〕$`\beta=|B|/\sqrt V\le\sqrt{D_G}`$，$`B=\mathbb E_G[U]`$。取等號當且僅當 $`\ell-1\propto\mathrm{Re}(\bar wU)`$，$`w=B/|B|`$（在 $`\ell\ge0`$ 允許的範圍內）。
-證明：$`B=\mathbb E_0[\ell U]=\mathbb E_0[(\ell-1)U]`$（由 (a)）；取 $`w=B/|B|`$，$`|B|=\mathbb E_0[(\ell-1)\mathrm{Re}(\bar wU)]\le\sqrt{\mathbb E_0(\ell-1)^2}\sqrt{\mathbb E_0(\mathrm{Re}\,\bar wU)^2}=\sqrt{D_GV}`$。
+(a)〔**精確**，只用設計〕設計律下 $`\mathbb E_0[U\mid G]=0`$、$`\mathbb E_0[U^2\mid G]=0`$、$`\mathbb E_0|U|^2=2V`$；故對任意單位複數 $`w`$，$`\mathbb E_0[(\mathrm{Re}\,\overline{w}U)^2]=V`$。
+證明：$`\alpha_b`$ 均勻 ⇒ $`\mathbb EU_b=\mathbb EU_b^2=0`$；同一區塊兩個不同位置的角差為 $`2\pi k/L`$（$`k`$ 在非零剩餘上均勻），$`\mathbb Ee^{\mathrm i(\theta_j-\theta_k)}=-1/(L-1)`$（$`j\ne k`$），故 $`\mathbb E|U_b|^2=\sum_j(\widetilde f_j)^2-\tfrac1{L-1}\bigl[(\sum_j\widetilde f_j)^2-\sum_j(\widetilde f_j)^2\bigr]=\tfrac L{L-1}\sum_j(\widetilde f_j)^2=2V_b`$（$`\sum_j\widetilde f_j=0`$）；區塊獨立；$`(\mathrm{Re}\,\overline{w}U)^2=\tfrac12|U|^2+\tfrac12\mathrm{Re}((\overline{w})^2U^2)`$。
+(b)〔**定理，(I) 下**〕$`\beta=|B|/\sqrt V\le\sqrt{D_G}`$，$`B=\mathbb E_G[U]`$。取等號當且僅當 $`\ell-1\propto\mathrm{Re}(\overline{w}U)`$，$`w=B/|B|`$（在 $`\ell\ge0`$ 允許的範圍內）。
+證明：$`B=\mathbb E_0[\ell U]=\mathbb E_0[(\ell-1)U]`$（由 (a)）；取 $`w=B/|B|`$，$`|B|=\mathbb E_0[(\ell-1)\mathrm{Re}(\overline{w}U)]\le\sqrt{\mathbb E_0(\ell-1)^2}\sqrt{\mathbb E_0(\mathrm{Re}\,\overline{w}U)^2}=\sqrt{D_GV}`$。
 與引理 3(a) 的 $`\beta\le\sqrt{2N}\gamma`$ 不矛盾：兩者的輸入不同（$`q`$ 的邊際大小 vs 種子律的 $`\chi^2`$ 散度），可同時成立；(b) 利用了「一切 $`q`$ 都來自同一個種子律」的結構。
 (c)〔**定理，(I) 下；不需 CLT**〕§4 檢定的拒絕事件 $`A`$ 只是 $`S`$ 的函數（觀測與重抽都由 $`S`$ 決定），設計律下 $`P_0(A\mid G)=0.05`$ 精確（$`M_{\rm perm}=1999`$，無平手）。故 $`P_G(A\mid G)\le0.05+\mathrm{TV}(P_G,P_0)\le0.05+\tfrac12\sqrt{D_G}`$（$`\mathrm{TV}=\tfrac12\mathbb E_0|\ell-1|\le\tfrac12\sqrt{D_G}`$）。此界不依賴引理 3 的近似，但在 $`D_G`$ 不小時比 $`e_{\rm I}(\beta)`$ 寬鬆。覆蓋率：$`H_1`$ 下 $`x`$ 依賴 θ，上述條件化論證不能直接用於覆蓋事件；改以引理 3(c) 的一階可加近似，將洩漏偏差以 $`\beta\le\sqrt{D_G}`$ 代入（近似，不是定理）。
 (d)〔**精確**〕若有 $`k`$ 個條件獨立的設計律種子抽取，並在其中取 $`\widehat p`$ 最小者（即任一個 $`\widehat p\le0.05`$ 即拒絕），型一錯誤為 $`1-0.95^k`$：$`k=2/3/20`$ → 0.0975/0.1426/0.6415。故抽取次數必須限制並稽核（12.5.1 第 3 步）。
@@ -315,7 +315,7 @@ D_G=\mathbb E_0[(\ell-1)^2]=\chi^2(P_G\Vert P_0)=2^{\lambda\,n_{\rm dev}}\textst
 (f)〔**註冊要求與數值**〕$`H_2(R_d|G)\ge \lambda+32=160`$ 位元（以保守最小熵估計 × 長度檢查；$`R_d\ge512`$ 位元故每位元 ≥0.3125）⇒ $`D_d\le2^{-32}`$；$`n_{\rm dev}=4`$：$`D_G\le9.3\times10^{-10}`$，$`\beta\le3.1\times10^{-5}`$，型一錯誤至多超出 0.05 約 $`1.5\times10^{-5}`$。（(e) 的期望是對雜湊的隨機選擇取的；對固定的 SHA-256，Markov 不等式給出：以至少 $`1-2^{-j}`$ 的機率 $`D\le2^{j}`$ 倍此值——這是 (H) 下的陳述。）
 (g)〔**限制**〕
 1. **E2 不可由資料證明，熵檢測只是必要條件。** 條件於 $`G`$ 為確定、邊際上看似隨機的串流（例如由環境紀錄決定的偽隨機串）通過所有邊際熵檢測，卻有 $`H_2(R|G)=0`$，引理 5 對它沒有任何保證。這是「A1 不可由資料證明」的精確形式。
-2. **(b) 是最壞對齊界。** 取等號需要種子律的偏離與 $`\mathrm{Re}(\bar wU(S))`$ 成正比，即偏離須「知道」$`x`$ 的函數 $`U(\cdot)`$；與 $`U`$ 無關的偏離遠小於界（離散種子空間中 300 個隨機（白雜訊式）傾斜，$`\beta/\sqrt D`$ 最大 0.027（`legacy/r23.py`），這只是一個例子，不是一般性陳述）。
+2. **(b) 是最壞對齊界。** 取等號需要種子律的偏離與 $`\mathrm{Re}(\overline{w}U(S))`$ 成正比，即偏離須「知道」$`x`$ 的函數 $`U(\cdot)`$；與 $`U`$ 無關的偏離遠小於界（離散種子空間中 300 個隨機（白雜訊式）傾斜，$`\beta/\sqrt D`$ 最大 0.027（`legacy/r23.py`），這只是一個例子，不是一般性陳述）。
 3. **只涵蓋 θ 是 $`(S,c)`$ 的確定函數的情形**；12.5.1 第 5 步（E1，逐位元重算）檢查這一點。§8.3 與引理 3 的逐單位傾斜 $`q`$ 模型，對應的正是 E1 被破壞（θ 含種子以外的輸入）的情形；E1 成立時，$`q`$ 的唯一來源是種子律，由引理 5 約束。
 4. **(I) 與 (H) 是理想化**：引理 5 在其下是定理，不是對真實 Philox 或 SHA-256 的陳述。
 5. 閘門（§12.3）不是引理 5 的前提；種子律的偏離若與環境類別對齊，$`U_{\rm mon}`$ 仍有檢定力，可作為 E2 失效的旁證。
@@ -340,6 +340,6 @@ D_G=\mathbb E_0[(\ell-1)^2]=\chi^2(P_G\Vert P_0)=2^{\lambda\,n_{\rm dev}}\textst
 - 引理 3(c)：C 類洩漏 + 反相真訊號，8 格（$`q\in\{0.03,0.05\}`$ × $`\nu\approx1\text{–}4`$，每格 1500 次）：預測 1.000/0.918/0.823/0.823、1.000/0.880/0.633/0.601，觀測 1.000/0.913/0.811/0.820、1.000/0.875/0.635/0.577，全在 Wilson 95% 區間內，其中一格〔$`q=0.05,\nu\approx4`$，預測 0.601，區間上緣 0.601〕在邊緣。無偏差時的解析覆蓋率為 0.972–1.000：**$`\nu\approx3\text{–}4`$ 時，偏差 $`\beta\approx1`$–1.8 即可把覆蓋率壓到觀測的 0.58–0.82**。
 - 引理 4：η 公式 vs 實測 $`\widehat s_{\rm mon}/\sqrt V`$（`r21d.py`，8 組）差 $`\le3\%`$。$`A1`$ 下型一錯誤 0.050 [0.031, 0.081]（$`R=300`$，先導，非驗收）；$`H_1`$（$`\nu\approx3`$）無洩漏 0.053 [0.033, 0.085]（對真訊號不敏感）。C 類（$`q=0.03`$，$`\beta=1.06`$）：代理完整 0.963 [0.936, 0.979]（估計 $`\widehat\beta_{\rm mon}`$ 1.07，真 1.05）；代理 25% 誤分 0.480 [0.424, 0.536]（真 $`\beta_{\rm mon}`$ 僅 0.26，估計 0.31）；代理無資訊 0.080 [0.054, 0.116]（真 $`\beta_{\rm mon}\approx0`$：**看不到**）。$`\beta_{\rm mon}`$ 上界的涵蓋率 0.997–1.000。
 - 閘門全流程模擬（`r21c.py`，$`R=300`$，$`M=199`$，主檢定與 $`U_{\rm mon}`$ 共用同一組重抽；C 類洩漏；代理完整〔$`\eta=0.252`$〕或 25% 誤分〔$`\eta=0.127`$，真 $`\beta_{\rm mon}\approx0.25\beta`$〕）。「主檢定拒絕／$`U_{\rm mon}`$ 拒絕／複合（拒絕且閘門通過）」觀測 vs 高斯模型預測：代理完整 $`q=0.005`$：0.063/0.093/0.060 vs 0.052/0.091/0.045；$`q=0.02`$：0.077/0.700/0.017 vs 0.089/0.702/0.017；$`q=0.03`$：0.153/0.977/0.000 vs 0.144/0.972/0.002。代理 25% 誤分 $`q=0.01`$：0.060/0.083/0.053 vs 0.059/0.088/0.053；$`q=0.03`$：0.147/0.470/0.057 vs 0.144/0.446/0.070；$`q=0.05`$：0.323/0.870/0.037 vs 0.331/0.883/0.031。6 格 18 個預測全落在觀測的 Wilson 95% 區間內；複合值最大 0.060 [0.038, 0.093]（代理完整、$`q=0.005`$，預測 0.045；$`R=300`$ 的標準誤約 0.013，無法與 0.05 區分）。
-- 引理 5(a)(b)(e)（精確列舉與窮舉；`code/tests/test_snd.py::test_lemma5_*`、`legacy/r23.py`）：(a) $`L=4,5,6`$，7 個旋轉格點 × 全部 $`L!`$ 排列，$`|\mathbb EU|,|\mathbb EU^2|<10^{-12}`$，$`\mathbb E|U|^2/(2V)`$ 與 $`\mathbb E[(\mathrm{Re}\,\bar wU)^2]/V`$ 皆等於 1（差 <10⁻¹²）；(b) 離散種子空間（$`K=2,L=4`$，6 個旋轉格點，20736 個種子）：對齊傾斜 $`\varepsilon=0.05/0.2/0.4`$ 時 $`\beta=\sqrt D`$（比值 1.000000000，取等號），隨機傾斜（測試 200 個、`r23.py` 300 個）皆滿足 $`\beta\le\sqrt D`$（`r23.py` 最大比值 0.027）、$`\mathrm{TV}\le\tfrac12\sqrt D`$、隨機事件的機率差 $`\le\mathrm{TV}`$；(e) GF(2) 線性雜湊 $`n=6`$、輸出 $`\lambda=3`$ 位元 對全部 $`2^{18}`$ 個矩陣窮舉，$`\mathbb E_AD_{\rm out}=(2^\lambda-1)\mathrm{CP}`$（差 <10⁻¹²）。這些驗證的是引理本身的代數與不等式，不是對真實 QRNG、Philox 或 SHA-256 的陳述。
+- 引理 5(a)(b)(e)（精確列舉與窮舉；`code/tests/test_snd.py::test_lemma5_*`、`legacy/r23.py`）：(a) $`L=4,5,6`$，7 個旋轉格點 × 全部 $`L!`$ 排列，$`|\mathbb EU|,|\mathbb EU^2|<10^{-12}`$，$`\mathbb E|U|^2/(2V)`$ 與 $`\mathbb E[(\mathrm{Re}\,\overline{w}U)^2]/V`$ 皆等於 1（差 <10⁻¹²）；(b) 離散種子空間（$`K=2,L=4`$，6 個旋轉格點，20736 個種子）：對齊傾斜 $`\varepsilon=0.05/0.2/0.4`$ 時 $`\beta=\sqrt D`$（比值 1.000000000，取等號），隨機傾斜（測試 200 個、`r23.py` 300 個）皆滿足 $`\beta\le\sqrt D`$（`r23.py` 最大比值 0.027）、$`\mathrm{TV}\le\tfrac12\sqrt D`$、隨機事件的機率差 $`\le\mathrm{TV}`$；(e) GF(2) 線性雜湊 $`n=6`$、輸出 $`\lambda=3`$ 位元 對全部 $`2^{18}`$ 個矩陣窮舉，$`\mathbb E_AD_{\rm out}=(2^\lambda-1)\mathrm{CP}`$（差 <10⁻¹²）。這些驗證的是引理本身的代數與不等式，不是對真實 QRNG、Philox 或 SHA-256 的陳述。
 - 引理 5(d)（模擬，$`K=4,L=8,M=199`$，$`R=3000`$，種子 13；`test_lemma5_numbers_and_best_of_k`）：$`k=1/2/3`$ 的拒絕率 0.0507/0.0937/0.1337，預測 0.0500/0.0975/0.1426（$`z=0.17/-0.71/-1.40`$）。引理 5(d′)（`test_lemma5_retry_on_theta_only_failure`，1000 個種子的玩具空間，$`f=0.1`$，$`A`$ 取在通過集內的最壞情形）：精確值 $`0.05/(1-f)=0.0556`$，模擬（種子 14，$`R=2\times10^5`$）在 4 個標準誤內。
 - **未驗證**：(1) 真實規模（$`K=10^6,L=10^4`$）下的引理 3(b)(c) 與 $`\eta`$；(2) 類別分割由探索集產生的流程；(3) 洩漏同時與多個類別、非高斯通道的交互；(4) $`\omega`$ 的真實量級；(5) 12.3 性質 2–4 只在高斯模型下計算（尚無全流程模擬覆蓋全部 $`\beta_{\rm mon},\beta_{\rm res}`$ 格點，僅有上列 6 個抽樣點的模擬核對）；(6) E2（條件於 $`G`$ 的原始熵）是物理假設，真實 QRNG 的條件熵未測；(7) 理想化 (I)、(H) 對真實 Philox 與 SHA-256 的適用性；(8) 12.5.1 的程序（外部時間戳、自動抽取、熵源特性化、E1 重算）是設計，尚無實測或實作；(9) 12.5.5：θ 若須於採集期間實體施加，本程序不適用。

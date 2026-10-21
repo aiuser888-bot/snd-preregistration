@@ -18,17 +18,17 @@
 
 ## 1. 資料集與凍結
 
-- 探索集與驗證集物理隔離。探索集決定：$`T`$、$`\widehat f`$、$`\widehat p_0`$、$`\sigma_f^2=\int\widehat p_0\widehat f^2`$（僅供規劃用）。驗證期間不得更改。
+- 探索集與驗證集物理隔離。探索集決定：$`T`$、$`\widehat f`$、$`\widehat p_0`$、$`\sigma_f^2=\int\widehat p_0(\widehat f)^2`$（僅供規劃用）。驗證期間不得更改。
 - 篩選（若有）只能依 $`x`$ 側的硬體旗標，且在角度產生前完成（§3.3）。
 
 ## 2. 統計量（唯一定義）
 
-**雙向中心化（只用 $`x`$，在角度產生前完成並凍結）。** 全部區塊收集完畢後：$`\bar f_b=L^{-1}\sum_if_{b,i}`$，$`\widehat g_j=K^{-1}\sum_b(f_{b,j}-\bar f_b)`$（區塊內位置 $`j`$ 的共同剖面），
-$`\widetilde f_{b,j}=f_{b,j}-\bar f_b-\widehat g_j`$，再對每區塊扣除其列平均 $`\bar{\widetilde f}_b`$（記為 $`\widetilde f`$，此後 $`\sum_j\widetilde f_{b,j}=0`$）。
+**雙向中心化（只用 $`x`$，在角度產生前完成並凍結）。** 全部區塊收集完畢後：$`\overline{f}_b=L^{-1}\sum_if_{b,i}`$，$`\widehat g_j=K^{-1}\sum_b(f_{b,j}-\overline{f}_b)`$（區塊內位置 $`j`$ 的共同剖面），
+$`\widetilde f_{b,j}=f_{b,j}-\overline{f}_b-\widehat g_j`$，再對每區塊扣除其列平均 $`\overline{\widetilde f}_b`$（記為 $`\widetilde f`$，此後 $`\sum_j\widetilde f_{b,j}=0`$）。
 
 對每個區塊：
 
-$`U_b=\sum_{i=1}^{L}\widetilde f_{b,i}\,e^{\mathrm{i}\theta_{b,i}}\in\mathbb C,\qquad S_b^2=\sum_{i=1}^{L}\widetilde f_{b,i}^{\,2},\qquad V_b=\dfrac{L}{2(L-1)}S_b^2`$
+$`U_b=\sum_{i=1}^{L}\widetilde f_{b,i}\,e^{\mathrm{i}\theta_{b,i}}\in\mathbb C,\qquad S_b^2=\sum_{i=1}^{L}(\widetilde f_{b,i})^{2},\qquad V_b=\dfrac{L}{2(L-1)}S_b^2`$
 
 全體：$`U=\sum_bU_b`$，$`V=\sum_bV_b`$。
 
@@ -72,7 +72,7 @@ $`\widehat p=\dfrac{1+\#\{m:\Lambda_m\ge\Lambda_{\rm obs}\}}{M_{\rm perm}+1}`$�
 
 ## 5. 振幅上置信界（FC–Rice 單邊界）
 
-令 $`\widehat x=\widehat r/\widehat\sigma=|U|/\sqrt V`$。大樣本下（$`K\approx10^6`$ 個獨立區塊分數之和，CLT）：$`\widehat x^2\sim`$ 非中心 $`\chi^2_2`$，非中心參數 $`\nu^2`$，$`\nu=r/\widehat\sigma`$；即 $`\widehat x\sim\mathrm{Rice}(\nu,1)`$，密度 $`p(x\mid\nu)=x\,e^{-(x^2+\nu^2)/2}I_0(x\nu)`$。
+令 $`\widehat x=\widehat r/\widehat\sigma=|U|/\sqrt V`$。大樣本下（$`K\approx10^6`$ 個獨立區塊分數之和，CLT）：$`(\widehat x)^2\sim`$ 非中心 $`\chi^2_2`$，非中心參數 $`\nu^2`$，$`\nu=r/\widehat\sigma`$；即 $`\widehat x\sim\mathrm{Rice}(\nu,1)`$，密度 $`p(x\mid\nu)=x\,e^{-(x^2+\nu^2)/2}I_0(x\nu)`$。
 
 ### 5.1 離線表格（與資料無關，前置計算並公開）
 1. $`R(x\mid\nu)=\ln p(x\mid\nu)-\max_{\nu'\ge0}\ln p(x\mid\nu')`$。
@@ -143,7 +143,7 @@ $`V`$ 只依賴 $`x`$，停止規則因此與 $`\theta`$ 無關，不破壞 §4 
 | $`\widehat p\le0.05`$，未重現 | 拒絕 $`H_0`$。宣告待驗證的統計異常，啟動資料與硬體洩漏排查。若同時 $`\mathrm{UCB}_{95}<10^{-4}`$，另註明估計振幅低於 $`r_{\min}`$。 |
 | $`\widehat p\le0.05`$，且獨立實驗室重現 | 發現可重現的指定型態統計依賴。 |
 
-**重現成功的定義**（解盲前鎖定）：重現實驗室使用相同的 $`\widehat f`$、區塊設計、$`\theta`$ 零點與統計量，達到 $`V_{\rm rep}\ge V_{\rm target}`$（機台數與工期不限）；且 (i) $`\widehat p_{\rm rep}\le0.05`$；(ii) $`|\widehat\mu_{\rm rep}-\widehat\mu_{\rm orig}|^2/(\widehat\sigma_{\rm rep}^2+\widehat\sigma_{\rm orig}^2)\le\chi^2_{2,0.95}=5.991`$。
+**重現成功的定義**（解盲前鎖定）：重現實驗室使用相同的 $`\widehat f`$、區塊設計、$`\theta`$ 零點與統計量，達到 $`V_{\rm rep}\ge V_{\rm target}`$（機台數與工期不限）；且 (i) $`\widehat p_{\rm rep}\le0.05`$；(ii) $`|\widehat\mu_{\rm rep}-\widehat\mu_{\rm orig}|^2/((\widehat\sigma_{\rm rep})^2+(\widehat\sigma_{\rm orig})^2)\le\chi^2_{2,0.95}=5.991`$。
 
 ## 11. 稽核鏈與詮釋分層
 

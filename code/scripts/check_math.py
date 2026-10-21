@@ -1,4 +1,4 @@
-"""Formula hygiene check for every Markdown file in the repository (protocol V2.0.11 and later).
+"""Formula hygiene check for every Markdown file in the repository (protocol V2.0.11 and later; rendering-hazard rule added in V2.0.12).
 
 Formulas are written in GitHub's math syntax: inline  $`...`$  and fenced display blocks  ```math ... ```.
 The older  \\( ... \\)  /  \\[ ... \\]  delimiters do NOT render on GitHub (Markdown treats  \\(  as an escaped parenthesis).
@@ -7,13 +7,18 @@ Checks (exit 0 = every check that ran passed):
   1. no raw  \\(  \\)  \\[  \\]  delimiters outside fenced code and inline code;
   2. every math span is non-empty, has balanced { } (escaped \\{ \\} ignored), matching \\left/\\right and \\begin/\\end;
   3. no stray '$' outside math spans and code;
-  4. every formula parses in KaTeX -- only if node and the 'katex' package are available
+  4. rendering hazards on github.com (MathJax), see render_fix.py: \\bar (use \\overline{...}) and an accented symbol carrying a
+     superscript, e.g. \\widehat f^2 (write (\\widehat f)^2); a formula that render_fix.fix_tex() would still change is reported;
+  5. every formula parses in KaTeX -- only if node and the 'katex' package are available
      (set KATEX_DIR to the package directory, or make 'katex' resolvable from node); otherwise reported as SKIPPED.
 
 Usage:  python scripts/check_math.py [ROOT]      (default ROOT: repository root)
 Note: KaTeX is a close but not identical parser to the MathJax that github.com uses; a KaTeX pass is strong evidence, not proof of GitHub rendering.
 """
 import json, os, re, subprocess, sys, tempfile
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from render_fix import fix_tex
 
 SKIP_DIRS = {".git", "node_modules", "__pycache__"}
 INLINE = re.compile(r"\$`(.+?)`\$")
@@ -134,6 +139,13 @@ def main(root):
         for (ln, tex, disp) in forms:
             for msg in structure_problems(tex):
                 probs.append((ln, msg + ": " + tex[:70]))
+            try:
+                fixed = fix_tex(tex)
+            except ValueError as e:
+                probs.append((ln, "cannot analyse formula (%s): %s" % (e, tex[:70])))
+            else:
+                if fixed != tex:
+                    probs.append((ln, "renders badly on github.com (floating \\bar / lifted superscript); would become: %s | now: %s" % (fixed[:90], tex[:90])))
         if forms:
             nfiles += 1
             nform += len(forms)

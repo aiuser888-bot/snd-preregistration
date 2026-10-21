@@ -19,18 +19,18 @@
 
 ## 1. 資料集與凍結
 
-- 探索集與驗證集物理隔離。探索集決定：$`T`$、$`\widehat f`$、$`\widehat p_0`$、$`\sigma_f^2=\int\widehat p_0\widehat f^2`$（僅供規劃用）。驗證期間不得更改。
+- 探索集與驗證集物理隔離。探索集決定：$`T`$、$`\widehat f`$、$`\widehat p_0`$、$`\sigma_f^2=\int\widehat p_0(\widehat f)^2`$（僅供規劃用）。驗證期間不得更改。
 - 篩選（若有）只能依 $`x`$ 側的硬體旗標，且在角度產生前完成（§3.3）。
 
 ## 2. 統計量（唯一定義）
 
-**雙向中心化（只用 $`x`$，在角度產生前完成並凍結）。** 全部區塊收集完畢後：$`\bar f_b=L^{-1}\sum_if_{b,i}`$，$`\widehat g_j=K^{-1}\sum_b(f_{b,j}-\bar f_b)`$（區塊內位置 $`j`$ 的共同剖面），
-$`\widetilde f_{b,j}=f_{b,j}-\bar f_b-\widehat g_j`$，再對每區塊扣除其列平均 $`\bar{\widetilde f}_b`$（記為 $`\widetilde f`$，此後 $`\sum_j\widetilde f_{b,j}=0`$）。
+**雙向中心化（只用 $`x`$，在角度產生前完成並凍結）。** 全部區塊收集完畢後：$`\overline{f}_b=L^{-1}\sum_if_{b,i}`$，$`\widehat g_j=K^{-1}\sum_b(f_{b,j}-\overline{f}_b)`$（區塊內位置 $`j`$ 的共同剖面），
+$`\widetilde f_{b,j}=f_{b,j}-\overline{f}_b-\widehat g_j`$，再對每區塊扣除其列平均 $`\overline{\widetilde f}_b`$（記為 $`\widetilde f`$，此後 $`\sum_j\widetilde f_{b,j}=0`$）。
 **前提**：各區塊的「角度→位置」指派必須彼此獨立（§3.1 的均勻隨機排列）。若各區塊在同一位置使用相同角度，$`\widehat g_j`$ 會把信號一併扣除，功效歸零；隨機排列下 $`\widehat g_j`$ 只含 $`O(K^{-1/2})`$ 的信號成分，使 $`V`$ 減少約 $`1/K`$。
 
 對每個區塊：
 
-$`U_b=\sum_{i=1}^{L}\widetilde f_{b,i}\,e^{\mathrm{i}\theta_{b,i}}\in\mathbb C,\qquad S_b^2=\sum_{i=1}^{L}\widetilde f_{b,i}^{\,2},\qquad V_b=\dfrac{L}{2(L-1)}S_b^2`$
+$`U_b=\sum_{i=1}^{L}\widetilde f_{b,i}\,e^{\mathrm{i}\theta_{b,i}}\in\mathbb C,\qquad S_b^2=\sum_{i=1}^{L}(\widetilde f_{b,i})^{2},\qquad V_b=\dfrac{L}{2(L-1)}S_b^2`$
 
 全體：$`U=\sum_bU_b`$，$`V=\sum_bV_b`$。
 
@@ -57,7 +57,7 @@ $`\boxed{\Lambda=\dfrac{|U|^2}{V}}`$，$`\quad\widehat\mu=\dfrac{U}{V}`$（$`\ze
 (ii) $`\mathrm{Var}(\mathrm{Re}\,U_b)=\mathrm{Var}(\mathrm{Im}\,U_b)=\mathbb E[V_b]=\tfrac L2\sigma_f^2\kappa`$（略去 $`O(r)`$ 修正）；
 (iii) 不同區塊的 $`U_b`$ 不相關（$`\alpha_b`$ 獨立，$`\mathbb E e^{\mathrm i(\alpha_b-\alpha_{b'})}=0`$）；
 (iv) $`\mathbb E[\widehat\mu]=\zeta/\kappa`$，故 $`\widehat x`$ 近似 Rice($`\nu_{\rm eff}`$)，$`\nu_{\rm eff}=\nu/\sqrt\kappa`$；覆蓋事件為 $`\nu\le u(\widehat x)`$，覆蓋率 $`=\mathrm{ncx2.sf}(x_{\min}(\nu)^2;\,2,\,\nu_{\rm eff}^2)`$，$`x_{\min}(\nu)`$ 為使 $`u(x)\ge\nu`$ 的最小 $`x`$；
-(v) $`\mathrm{Var}(\bar f)\ge0\Rightarrow1+2S_L\ge0\Rightarrow\kappa\le1+1/(L-1)`$（$`L=10^4`$ 時 $`1.0001`$）。正相關（$`\kappa<1`$）使 $`\nu_{\rm eff}>\nu`$：UCB 更保守、功效更高；負相關的反向效應不超過 $`10^{-4}`$。
+(v) $`\mathrm{Var}(\overline{f})\ge0\Rightarrow1+2S_L\ge0\Rightarrow\kappa\le1+1/(L-1)`$（$`L=10^4`$ 時 $`1.0001`$）。正相關（$`\kappa<1`$）使 $`\nu_{\rm eff}>\nu`$：UCB 更保守、功效更高；負相關的反向效應不超過 $`10^{-4}`$。
 證據（Gaussian-copula Bernoulli(0.2)，AR(1) 潛變數 $`\rho\in\{0,0.6,0.9\}`$；$`L{=}100,K{=}400`$ 與 $`L{=}400,K{=}100`$）：$`\kappa`$ 封閉式與模擬 $`E[V]/E[V_{\rm iid}]`$（以真 $`\sigma_f^2=0.25`$ 歸一）差 $`\le0.0006`$（`r14.py`）；$`\nu=3`$ 覆蓋率模擬 0.9692/0.9780/0.9832（$`L{=}100`$）、0.9708/0.9744/0.9740（$`L{=}400`$），(iv) 的預測 0.9716/0.9732/0.9803、0.9717/0.9722/0.9741，$`|z|\le1.49`$（$`R=2500`$，`r13.py`）；$`H_0`$ 型一錯誤 0.048–0.056。**範圍**：區塊內高斯 copula、雙點 $`f`$、$`\rho_{\rm latent}\le0.9`$；真實 $`L`$ 下 $`\kappa`$ 取決於 $`S_L`$（$`L=10^4,S_L\le50`$ 時 $`\kappa\ge0.99`$）。
 
 ## 3. 分派設計
@@ -87,7 +87,7 @@ $`\widehat p=\dfrac{1+\#\{m:\Lambda_m\ge\Lambda_{\rm obs}\}}{M_{\rm perm}+1}`$�
 
 ## 5. 振幅上置信界（FC–Rice 單邊界）
 
-令 $`\widehat x=\widehat r/\widehat\sigma=|U|/\sqrt V`$。大樣本下（$`K\approx10^6`$ 個獨立區塊分數之和，CLT）：$`\widehat x^2\sim`$ 非中心 $`\chi^2_2`$，非中心參數 $`\nu^2`$，$`\nu=r/\widehat\sigma`$；即 $`\widehat x\sim\mathrm{Rice}(\nu,1)`$，密度 $`p(x\mid\nu)=x\,e^{-(x^2+\nu^2)/2}I_0(x\nu)`$。$`V`$ 視為給定（其相對波動 $`O(K^{-1/2})`$）；序列相關時 $`\nu`$ 以 $`\nu_{\rm eff}=\nu/\sqrt\kappa`$ 取代（引理 2）。
+令 $`\widehat x=\widehat r/\widehat\sigma=|U|/\sqrt V`$。大樣本下（$`K\approx10^6`$ 個獨立區塊分數之和，CLT）：$`(\widehat x)^2\sim`$ 非中心 $`\chi^2_2`$，非中心參數 $`\nu^2`$，$`\nu=r/\widehat\sigma`$；即 $`\widehat x\sim\mathrm{Rice}(\nu,1)`$，密度 $`p(x\mid\nu)=x\,e^{-(x^2+\nu^2)/2}I_0(x\nu)`$。$`V`$ 視為給定（其相對波動 $`O(K^{-1/2})`$）；序列相關時 $`\nu`$ 以 $`\nu_{\rm eff}=\nu/\sqrt\kappa`$ 取代（引理 2）。
 
 ### 5.1 離線表格（與資料無關，前置計算並公開）
 1. $`R(x\mid\nu)=\ln p(x\mid\nu)-\max_{\nu'\ge0}\ln p(x\mid\nu')`$。
@@ -107,7 +107,7 @@ $`\boxed{\mathrm{UCB}_{95}=\widehat\sigma\cdot u(\widehat x)}`$
 
 停止規則：以區塊為單位持續收集，**當 $`V\ge V_{\rm target}`$ 時停止**；$`V_{\rm target}=1.375\times10^{9}`$。
 
-$`V`$ 只依賴 $`x`$，停止規則因此與 $`\theta`$ 無關，不破壞 §4 的有效性。停止判定使用列中心化的 $`V^{\rm row}=\sum_b\frac{L}{2(L-1)}\sum_j(f_{b,j}-\bar f_b)^2`$（收集期間即可計算）；分析使用最終雙向中心化的 $`V`$（相對差 $`O(1/K)`$，$`K=10^6`$ 時約 $`10^{-6}`$；若最終 $`V<V_{\rm target}`$ 仍照常分析並如實報告 $`T`$）。
+$`V`$ 只依賴 $`x`$，停止規則因此與 $`\theta`$ 無關，不破壞 §4 的有效性。停止判定使用列中心化的 $`V^{\rm row}=\sum_b\frac{L}{2(L-1)}\sum_j(f_{b,j}-\overline{f}_b)^2`$（收集期間即可計算）；分析使用最終雙向中心化的 $`V`$（相對差 $`O(1/K)`$，$`K=10^6`$ 時約 $`10^{-6}`$；若最終 $`V<V_{\rm target}`$ 仍照常分析並如實報告 $`T`$）。
 
 依據（前置計算，無量綱）：$`T=r_{\min}\sqrt V`$。在 $`V_{\rm target}`$ 時 $`T=3.708`$；
 
@@ -115,7 +115,7 @@ $`V`$ 只依賴 $`x`$，停止規則因此與 $`\theta`$ 無關，不破壞 §4 
 - $`r=r_{\min}`$ 時，$`P(\widehat p\le0.05)\approx0.923`$（解析；縮小規模模擬 0.928）。
 - 達到 0.80 排除機率的臨界值為 $`V\approx1.248\times10^9`$（$`T=3.533`$）；$`V_{\rm target}`$ 含 10% 餘裕。
 
-$`V`$ 與 $`N`$ 的關係：對 iid $`x`$、$`\sigma_f^2=\mathbb E[\widehat f^2]`$，$`\mathbb E[V]=\tfrac12N\sigma_f^2(1-1/K)`$（兩種規模模擬：$`L{=}100,K{=}400`$：4987.78±0.69 對公式 4987.50；$`L{=}50,K{=}20`$：118.75±0.11 對 118.75）；序列相關下 $`\mathbb E[V]=\tfrac12N\sigma_f^2\kappa(1-1/K)`$（引理 2，$`\kappa`$ 封閉式已驗證）。
+$`V`$ 與 $`N`$ 的關係：對 iid $`x`$、$`\sigma_f^2=\mathbb E[(\widehat f)^2]`$，$`\mathbb E[V]=\tfrac12N\sigma_f^2(1-1/K)`$（兩種規模模擬：$`L{=}100,K{=}400`$：4987.78±0.69 對公式 4987.50；$`L{=}50,K{=}20`$：118.75±0.11 對 118.75）；序列相關下 $`\mathbb E[V]=\tfrac12N\sigma_f^2\kappa(1-1/K)`$（引理 2，$`\kappa`$ 封閉式已驗證）。
 預期規模：$`N\approx 2V/(\sigma_f^2\kappa)`$（$`1-1/K`$ 修正在 $`K=10^6`$ 可忽略）；$`\sigma_f^2=0.25`$ 時 $`N\approx1.1\times10^{10}`$，4 台設備、$`\Delta T_{\rm wait}=10`$ ms，不含停機約 10.5 個月。
 
 - **啟動前可行性判斷（只依探索集）**：預測 $`N>N_{\max}=3\times10^{10}`$（約 29 個月）則不啟動。
@@ -161,7 +161,7 @@ $`V`$ 與 $`N`$ 的關係：對 iid $`x`$、$`\sigma_f^2=\mathbb E[\widehat f^2]
 | $`\widehat p\le0.05`$，未重現 | 拒絕 $`H_0`$。宣告待驗證的統計異常，啟動資料與硬體洩漏排查。若同時 $`\mathrm{UCB}_{95}<10^{-4}`$，另註明估計振幅低於 $`r_{\min}`$。 |
 | $`\widehat p\le0.05`$，且獨立實驗室重現 | 發現可重現的指定型態統計依賴。 |
 
-**重現成功的定義**（已鎖定：(ii) 取 $`\chi^2_{2,0.95}`$）：重現實驗室使用相同的 $`\widehat f`$、區塊設計、$`\theta`$ 零點與統計量，達到 $`V_{\rm rep}\ge V_{\rm target}`$（機台數與工期不限）；且 (i) $`\widehat p_{\rm rep}\le0.05`$；(ii) $`|\widehat\mu_{\rm rep}-\widehat\mu_{\rm orig}|^2/(\widehat\sigma_{\rm rep}^2+\widehat\sigma_{\rm orig}^2)\le\chi^2_{2,0.95}=5.991`$。
+**重現成功的定義**（已鎖定：(ii) 取 $`\chi^2_{2,0.95}`$）：重現實驗室使用相同的 $`\widehat f`$、區塊設計、$`\theta`$ 零點與統計量，達到 $`V_{\rm rep}\ge V_{\rm target}`$（機台數與工期不限）；且 (i) $`\widehat p_{\rm rep}\le0.05`$；(ii) $`|\widehat\mu_{\rm rep}-\widehat\mu_{\rm orig}|^2/((\widehat\sigma_{\rm rep})^2+(\widehat\sigma_{\rm orig})^2)\le\chi^2_{2,0.95}=5.991`$。
 
 **重現成功機率**（高斯大 $`K`$ 模型，$`M=4\times10^6`$，種子 `[20261019,1]`、`[20261021,1]`；條件於原實驗顯著；原實驗真效應 $`r=r_{\min}`$，$`\nu=3.708`$；$`\theta`$ 零點假設完全對齊）：
 - 重現實驗真效應相同：$`V_{\rm rep}=V_{\rm orig}`$ 時 0.889；$`2V_{\rm orig}`$ 時 0.956。(ii) 在真效應下仍有約 5% 不合格，與效應大小無關。

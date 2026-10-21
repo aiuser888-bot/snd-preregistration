@@ -10,9 +10,12 @@ upload can always be reconstructed from the current files:
   python scripts/convert_math.py to-github FILE      # print FILE converted to the GitHub style
   python scripts/convert_math.py selftest            # round-trip checks on built-in samples (exit 0 = pass)
 
-Example (verify that V2.0.11 equals the uploaded V2.0.10 apart from the title line):
+Example (verify that the V2.0.11 release, commit cb217e8, equals the uploaded V2.0.10, commit 25498f6, apart from the title line):
   git show 25498f6:protocol/SND_protocol_V2.0.10.md | tail -n +2 > /tmp/old_body
-  python scripts/convert_math.py to-legacy ../protocol/SND_protocol_V2.0.11.md | tail -n +2 | cmp - /tmp/old_body && echo identical
+  git show cb217e8:protocol/SND_protocol_V2.0.11.md > /tmp/v2011.md
+  python scripts/convert_math.py to-legacy /tmp/v2011.md | tail -n +2 | cmp - /tmp/old_body && echo identical
+Since V2.0.12 the files in the working tree also carry the rewrites of render_fix.py, which this converter does not undo, so the
+comparison must be made against the commit above, not against the current files.
 (`print` adds no trailing newline here, so the bytes match.)
 """
 import re, sys

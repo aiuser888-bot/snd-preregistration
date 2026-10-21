@@ -1,4 +1,4 @@
-# Project SND — Pre-registration Protocol V2.0.11, Reference Implementation and Validation Record
+# Project SND — Pre-registration Protocol V2.0.12, Reference Implementation and Validation Record
 
 **Status: pre-registration draft with reduced-scale simulation validation. No real experimental data exist or are included.**
 
@@ -10,8 +10,8 @@ Whether a feature `x` that is **sealed first** is statistically dependent on a b
 ## Contents
 | Path | What it is |
 |---|---|
-| `protocol/SND_protocol_V2.0.11.md` | The pre-registration text (current). Same content as V2.0.10; only the formula markup was changed so that github.com renders it. `protocol/history/` has V2.0.01–V2.0.10 |
-| `docs/audits/SND_audit_V1.0.08_to_V2.0.11.md` (+ earlier) | Claim-by-claim audit: each claim labelled proved / numerically supported / failed / unverified, with seeds and failure cases |
+| `protocol/SND_protocol_V2.0.12.md` | The pre-registration text (current). Same content as V2.0.10; only the formula markup was changed so that github.com renders and typesets it properly (V2.0.11: delimiters; V2.0.12: `\bar` and accented squares). `protocol/history/` has V2.0.01–V2.0.11 |
+| `docs/audits/SND_audit_V1.0.08_to_V2.0.12.md` (+ earlier) | Claim-by-claim audit: each claim labelled proved / numerically supported / failed / unverified, with seeds and failure cases |
 | `CHANGELOG.md` | Per-version record of errors/contradictions found, fixes, and changed verification methods (replaces publishing AI conversation logs; AI chats are not published) |
 | `docs/SND_evolution_for_everyone.md`, `docs/SND_evolution_summary.md` | Plain-language and technical development history |
 | `code/snd/` | Reference implementation: block angle generation (Philox, rejection-sampled permutations), two-way centred statistic, randomization test, FC–Rice table and UCB, exact κ, leakage sensitivity (`leak.py`: type-I curve e_I(β), coverage under bias, environment-projected test U_mon), reduced-scale acceptance simulation |
@@ -29,7 +29,8 @@ PYTHONPATH=. python scripts/build_table.py ../results/fc_rice_table.npz   # exit
 PYTHONPATH=. python tests/test_snd.py                                    # 18 PASS
 PYTHONPATH=. python scripts/leak_tables.py                               # leakage curves (instant)
 PYTHONPATH=. python scripts/check_numbers.py                             # exit 0 = protocol's closed-form numbers consistent
-PYTHONPATH=. python scripts/check_math.py                                # formula markup hygiene in all .md files (+ KaTeX parse if node and katex are installed)
+PYTHONPATH=. python scripts/check_math.py                                # formula markup hygiene and github.com rendering hazards in all .md files (+ KaTeX parse if node and katex are installed)
+PYTHONPATH=. python scripts/render_fix.py selftest                        # self-test of the two formula rewrite rules used since V2.0.12
 python scripts/check_licenses.py                                         # every file covered by exactly one licence (REUSE.toml), licence texts present
 PYTHONPATH=. python scripts/reproduce_all.py 1000                        # ~3 min, writes results/reproduce.json
 ```
@@ -69,4 +70,4 @@ GitHub's licence indicator can show only one licence per repository, so it canno
 
 ---
 ## 中文摘要
-本套件包含 SND 預註冊規範 V2.0.11（內容同 V2.0.10，只修正公式在 GitHub 上的顯示）、稽核紀錄（每項主張標示已證明／數值支持／未通過／未驗證）、經測試的參考實作與縮小規模驗證結果。**沒有任何真實實驗資料**；所有數值皆為模擬。核心保證：區塊隨機化檢定的第一類錯誤率在設計假設下精確成立（已證明）；上置信界的 95% 覆蓋率僅有縮小規模的模擬支持，尚未證明；已知反例（C 類硬體偏差）的後果由 §12 量化，可由已監測環境變數解釋的部分以精確檢定與閘門處理，未監測的殘餘只能以假設與實作稽核處理；其他未驗證項目列於上表與稽核檔。
+本套件包含 SND 預註冊規範 V2.0.12（內容同 V2.0.10，只修正公式在 GitHub 上的顯示與排版）、稽核紀錄（每項主張標示已證明／數值支持／未通過／未驗證）、經測試的參考實作與縮小規模驗證結果。**沒有任何真實實驗資料**；所有數值皆為模擬。核心保證：區塊隨機化檢定的第一類錯誤率在設計假設下精確成立（已證明）；上置信界的 95% 覆蓋率僅有縮小規模的模擬支持，尚未證明；已知反例（C 類硬體偏差）的後果由 §12 量化，可由已監測環境變數解釋的部分以精確檢定與閘門處理，未監測的殘餘只能以假設與實作稽核處理；其他未驗證項目列於上表與稽核檔。
