@@ -9,19 +9,20 @@
 1. Author: currently the pen name `Pietersite` in `CITATION.cff`, `.zenodo.json`, `LICENSES/MIT.txt`, `REUSE.toml`. Optionally add a real name, ORCID and affiliation there before a Zenodo/OSF deposit.
 2. Confirm licences (MIT for code; CC BY 4.0 for protocol, documents, results and metadata — see `LICENSE` and `REUSE.toml`) or choose others. If you change them, update `LICENSE`, `LICENSES/`, `REUSE.toml`, `CITATION.cff` and the Zenodo `license` field together, then run `code/scripts/check_licenses.py`.
 3. Decide **embargo**: Zenodo allows an embargo date; OSF registrations can be embargoed (check the current maximum on OSF).
-4. Decide whether to publish V2.0.12 as is or after the open items are addressed. A registration is permanent; an honest version history is possible via new Zenodo versions.
+4. Decide whether to publish V2.0.13 as is or after the open items are addressed. A registration is permanent; an honest version history is possible via new Zenodo versions.
 5. Confirm the §12.5 seed-acquisition choices: option A (one seed per device, drawn once after the data freeze T_F), raw QRNG output ≥ 512 bits with a conservative min-entropy estimate × length ≥ 160 bits, the external time-stamp provider for H_F, and that θ is an analysis-time label (§12.5.5). If θ must be physically set during data collection, §12.5.1 does not apply.
+6. Recommended before registering: have the angle procedure of protocol §3.1 re-implemented independently (another language, written from the protocol text only) and compared with `code/tests/vectors/theta_kat.json` and with `code/snd/philox_ref.py`. Protocol 12.5.1 step 5 relies on such a recomputation; the package contains only the author's own implementations (the integer reference, numpy, and a C cross-check `code/crosscheck/philox_theta.c` written from the protocol text), and the official Random123 known-answer file has not been compared. The same applies to the exact reference value of the statistic (protocol §4 and §7(D), integer arithmetic): an independent implementation should reproduce `code/tests/vectors/reference_kat.json`. The second tier that settles near ties has been run only in pure Python at reduced scale; its cost at registration scale (about 1.4–2.3 core-days per evaluation) is an extrapolation.
 
 ## Zenodo (manual upload)
 1. Log in at zenodo.org → *New upload*.
-2. Upload `SND_release_V2.0.12.zip` (or the files individually). Zenodo shows each file's MD5; compare with `SHA256SUMS.txt`/the MD5 list if you wish.
-3. Metadata (copy from `metadata/zenodo.json`): Resource type *Publication → Report* (choose another type if you prefer), title, authors, description, keywords, licence, language, version `2.0.12`.
+2. Upload `SND_release_V2.0.13.zip` (or the files individually). Zenodo shows each file's MD5; compare with `SHA256SUMS.txt`/the MD5 list if you wish.
+3. Metadata (copy from `metadata/zenodo.json`): Resource type *Publication → Report* (choose another type if you prefer), title, authors, description, keywords, licence, language, version `2.0.13`.
 4. Related identifiers (optional): later add OSF project URL as "is supplemented by".
 5. *Save* → check preview → *Publish* (a DOI is assigned; publishing cannot be undone, files can only be superseded by a new version).
 Alternative: put `snd_release/` in a GitHub repository, enable the repository in Zenodo's GitHub integration, and create a release; Zenodo reads `.zenodo.json`/`CITATION.cff`.
 
 ## OSF Preregistration — suggested answers (English, adapt as needed)
-**Title**: Project SND: block-randomization test and one-sided amplitude upper confidence bound for dependence between sealed features and later random basis angles (protocol V2.0.12).
+**Title**: Project SND: block-randomization test and one-sided amplitude upper confidence bound for dependence between sealed features and later random basis angles (protocol V2.0.13).
 
 **Description / hypotheses**: H0: the later randomly assigned angle θ is statistically independent of the sealed feature x. Alternative (modelling device only): p1(x|θ;a,b) = p0(x)[1 + f(x)(a cosθ + b sinθ)], r = |a+ib| ≤ 1e-3. Primary decision: randomization p-value ≤ 0.05. Secondary: 95% one-sided upper confidence bound on r; exclusion of r ≥ 1e-4 if the bound is below 1e-4 and p > 0.05.
 
@@ -31,7 +32,7 @@ Alternative: put `snd_release/` in a GitHub repository, enable the repository in
 
 **Variables**: x (sealed scalar feature from the frozen operator T), f̂ = frozen feature perturbation function (sup|f̂| ≤ 1), θ (angle). No outcome other than U, V defined in protocol §2.
 
-**Analysis plan**: Statistic Λ = |U|²/V with U = Σ f̃ e^{iθ}; randomization test with M = 1999 redraws (level exactly 0.05); UCB95 = V^{-1/2}·u(|U|/√V) with the Feldman–Cousins–Rice table (checkpoints in §5.1). Invalid-analysis rules: audit-chain failure, incomplete angle records, design-check or uniformity-test failure, failed pre-validation (§7), numerical-accuracy failure.
+**Analysis plan**: Statistic Λ = |U|²/V with U = Σ f̃ e^{iθ}; randomization test with M = 1999 redraws (level at most 0.05, exactly 0.05 when there are no ties); the p-value is defined on the exact real-number value of |U| computed from the sealed centred array f̃ and the binary64 angles, floating point is a fast approximation, and a result that rounding could change is settled by a fixed second tier in integer arithmetic without changing seed or data (protocol §4); UCB95 = V^{-1/2}·u(|U|/√V) with the Feldman–Cousins–Rice table (checkpoints in §5.1). Invalid-analysis rules: audit-chain failure, incomplete angle records, design-check or uniformity-test failure, failed pre-validation (§7), numerical-accuracy failure (data-driven error bound above 10⁻⁶ or failed maths-library check). The centred array f̃ and its SHA-256 are sealed with H_F before the seed is drawn (protocol §2, §12.5.1).
 
 **Exclusion / quality**: whole-block exclusion for hardware flags (decided before angles are generated).
 

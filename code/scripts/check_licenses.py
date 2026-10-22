@@ -1,9 +1,10 @@
-"""Licence coverage check (V2.0.11).  Exit 0 = every check passed.
+"""Licence coverage check.  Exit 0 = every check passed.
 
 The repository is multi-licensed (MIT for software, CC BY 4.0 for text/data/metadata); REUSE.toml maps every file to exactly one licence and
 LICENSES/<SPDX-id>.txt holds the full text.  This script checks:
   1. REUSE.toml parses and every annotation is well-formed (version 1, path, SPDX-License-Identifier, SPDX-FileCopyrightText);
-  2. every file of the repository (git-tracked files, or all files if git is unavailable; LICENSES/ excluded) matches exactly one
+  2. every file of the repository (files tracked by git plus files not yet added and not ignored, or all files if git is unavailable;
+     LICENSES/ excluded) matches exactly one
      annotation -- none uncovered, none covered twice;
   3. every licence id used has LICENSES/<id>.txt with its characteristic wording, and every LICENSES/*.txt is used;
   4. LICENSE (the notice) names every licence id and REUSE.toml, contains no draft prompts, and no document still refers to the removed
@@ -42,8 +43,10 @@ def glob_re(pat):
 
 def list_files(root):
     try:
-        out = subprocess.run(["git", "ls-files"], cwd=root, capture_output=True, text=True, check=True).stdout.split("\n")
-        files = [f for f in out if f]
+        # tracked files and files not yet added (but not ignored): a new file must not escape the check just because it is untracked
+        out = subprocess.run(["git", "ls-files", "--cached", "--others", "--exclude-standard"], cwd=root, capture_output=True, text=True,
+                             check=True).stdout.split("\n")
+        files = sorted({f for f in out if f and os.path.isfile(os.path.join(root, f))})
         if files:
             return sorted(files)
     except Exception:

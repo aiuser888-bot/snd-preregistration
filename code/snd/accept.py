@@ -1,4 +1,8 @@
-"""Section 7: reduced-scale acceptance simulations (dimensionless; see protocol for scaling caveats)."""
+"""Section 7: reduced-scale acceptance simulations (dimensionless; see protocol for scaling caveats).
+
+Implements: protocol 7(B), 7(B′) (coverage simulations under A3 / A3′).
+Verified by: tests/test_snd.py::test_coverage_iid_and_serial
+"""
 import numpy as np
 from scipy import stats
 from scipy.signal import lfilter
@@ -9,6 +13,7 @@ CRIT = stats.chi2.ppf(0.95, 2)
 
 
 def wilson(k, n, z=1.96):
+    """Implements: protocol 7(B) (Wilson interval used to report simulated coverage)."""
     p = k / n
     d = 1 + z * z / n
     c = (p + z * z / (2 * n)) / d
@@ -23,7 +28,7 @@ def _angles(rng, K, L):
 
 
 def simulate(L, K, rho, nu0, R, seed, xs, ucb, p0=0.2):
-    """Gaussian-copula Bernoulli(p0) H1 (A3'); f in {1.25-0.25, -0.25}; sigma_f^2 = 0.25 (p0=0.2).
+    """Implements: protocol 7(B), 7(B′).  Gaussian-copula Bernoulli(p0) H1 (A3′); f in {1.25-0.25, -0.25}; sigma_f^2 = 0.25 (p0=0.2).
     nu0 = r / sigma_0 with sigma_0 = V_iid^{-1/2} (iid normalisation).
     Returns dict(coverage, reject, kappa_emp, wilson)."""
     rng = np.random.default_rng([20261100, seed])

@@ -1,13 +1,13 @@
 {
-  "title": "Project SND: Pre-registration Protocol V2.0.12 and Reference Implementation (randomization test + Feldman-Cousins-Rice upper confidence bound)",
+  "title": "Project SND: Pre-registration Protocol V2.0.13 and Reference Implementation (randomization test + Feldman-Cousins-Rice upper confidence bound)",
   "upload_type": "publication",
   "publication_type": "report",
-  "description": "<p>Pre-registration protocol (V2.0.12) for a statistical test of whether a sealed feature x is dependent on a later, randomly assigned basis angle theta. The test is a block-randomization test (exact under the stated randomization design) together with a one-sided Feldman-Cousins-Rice upper confidence bound for the amplitude.</p><p>Contents: protocol text (V2.0.12 and history V2.0.01-V2.0.11), audit records with claim labels (proved / numerically supported / unverified), a tested Python reference implementation, reduced-scale validation results, and original exploratory scripts with known-issue notes.</p><p><b>Status:</b> NO real experimental data exist or are included; all numerical results are reduced-scale simulations. Open issues (listed in the protocol and audit) include a counter-example class of hardware bias that centring cannot remove, unverified full-scale CLT for the alternative, unverified achievability of the required feature variance, and an unmeasured GPU budget.</p>",
+  "description": "<p>Pre-registration protocol (V2.0.13) for a statistical test of whether a sealed feature x is dependent on a later, randomly assigned basis angle theta. The test is a block-randomization test (exact under the stated randomization design) together with a one-sided Feldman-Cousins-Rice upper confidence bound for the amplitude.</p><p>Contents: protocol text (V2.0.13 and history V2.0.01-V2.0.12), audit records with claim labels (proved / numerically supported / unverified), a tested Python reference implementation (including an integer-only reference of the normative angle generator and known-answer vectors), reduced-scale validation results, and original exploratory scripts with known-issue notes.</p><p><b>Status:</b> NO real experimental data exist or are included; all numerical results are reduced-scale simulations. Open issues (listed in the protocol and audit) include a counter-example class of hardware bias that centring cannot remove, unverified full-scale CLT for the alternative, unverified achievability of the required feature variance, and an unmeasured GPU budget.</p>",
   "creators": [{"name": "Pietersite", "affiliation": ""}],
   "keywords": ["preregistration", "randomization test", "Rice distribution", "Feldman-Cousins", "upper confidence bound", "serial correlation", "coverage probability"],
   "license": "cc-by-4.0",
   "access_right": "open",
   "language": "zho",
-  "version": "2.0.12",
+  "version": "2.0.13",
   "notes": "Multi-licensed: software (code/, legacy/, .github/) under MIT; protocol, documents, results and metadata under CC BY 4.0 (see LICENSE and REUSE.toml)."
 }

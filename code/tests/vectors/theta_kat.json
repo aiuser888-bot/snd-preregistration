@@ -1,0 +1,595 @@
+{
+ "block_theta": [
+  {
+   "L": 1,
+   "alpha_bits": "0x3ff1be25d9903fd1",
+   "block": 0,
+   "key": [
+    "0x0123456789abcdef",
+    "0xfedcba9876543210"
+   ],
+   "m": 0,
+   "perm": [
+    0
+   ],
+   "theta_bits": [
+    "0x3ff1be25d9903fd1"
+   ]
+  },
+  {
+   "L": 2,
+   "alpha_bits": "0x3ff1be25d9903fd1",
+   "block": 0,
+   "key": [
+    "0x0123456789abcdef",
+    "0xfedcba9876543210"
+   ],
+   "m": 0,
+   "perm": [
+    1,
+    0
+   ],
+   "theta_bits": [
+    "0x4011008720862680",
+    "0x3ff1be25d9903fd1"
+   ]
+  },
+  {
+   "L": 8,
+   "alpha_bits": "0x3ff1be25d9903fd1",
+   "block": 0,
+   "key": [
+    "0x0123456789abcdef",
+    "0xfedcba9876543210"
+   ],
+   "m": 0,
+   "perm": [
+    5,
+    1,
+    6,
+    0,
+    4,
+    3,
+    7,
+    2
+   ],
+   "theta_bits": [
+    "0x401424c68b0eac23",
+    "0x3ffe4f2383b2565d",
+    "0x40174905f59731c6",
+    "0x3ff1be25d9903fd1",
+    "0x4011008720862680",
+    "0x400bb88f6bfb41ba",
+    "0x401a6d45601fb769",
+    "0x4005701096ea3674"
+   ]
+  },
+  {
+   "L": 16,
+   "alpha_bits": "0x401621da743911c4",
+   "block": 1,
+   "key": [
+    "0x0123456789abcdef",
+    "0xfedcba9876543210"
+   ],
+   "m": 1,
+   "perm": [
+    2,
+    8,
+    4,
+    9,
+    12,
+    14,
+    0,
+    10,
+    6,
+    15,
+    5,
+    7,
+    1,
+    3,
+    13,
+    11
+   ],
+   "theta_bits": [
+    "0x40194619dec19767",
+    "0x4021596c0f2d9428",
+    "0x401c6a59494a1d0a",
+    "0x4022227be9cfb591",
+    "0x40247dab79b619cb",
+    "0x40260fcb2efa5c9c",
+    "0x401621da743911c4",
+    "0x4022eb8bc471d6fa",
+    "0x401f8e98b3d2a2ad",
+    "0x4026d8db099c7e05",
+    "0x401dfc78fe8e5fdc",
+    "0x4020905c348b72bf",
+    "0x4017b3fa297d5496",
+    "0x401ad8399405da38",
+    "0x402546bb54583b34",
+    "0x4023b49b9f13f862"
+   ]
+  },
+  {
+   "L": 10,
+   "alpha_bits": "0x400b9a14a1e8da2d",
+   "block": 7,
+   "key": [
+    "0x243f6a8885a308d3",
+    "0x13198a2e03707344"
+   ],
+   "m": 0,
+   "perm": [
+    4,
+    5,
+    6,
+    3,
+    7,
+    9,
+    8,
+    1,
+    0,
+    2
+   ],
+   "theta_bits": [
+    "0x4017daa20c42e586",
+    "0x401a5e07fb1683a2",
+    "0x401ce16de9ea21be",
+    "0x4015573c1d6f476a",
+    "0x401f64d3d8bdbfda",
+    "0x402235cfdb327e09",
+    "0x4020f41ce3c8aefb",
+    "0x401050703fc80b32",
+    "0x400b9a14a1e8da2d",
+    "0x4012d3d62e9ba94e"
+   ]
+  },
+  {
+   "L": 33,
+   "alpha_bits": "0x3fe4d9c8a853762d",
+   "block": 1048579,
+   "key": [
+    "0x243f6a8885a308d3",
+    "0x13198a2e03707344"
+   ],
+   "m": 1999,
+   "perm": [
+    28,
+    0,
+    8,
+    4,
+    30,
+    26,
+    5,
+    13,
+    10,
+    29,
+    1,
+    7,
+    16,
+    12,
+    18,
+    22,
+    2,
+    6,
+    27,
+    20,
+    31,
+    15,
+    17,
+    9,
+    25,
+    11,
+    21,
+    32,
+    23,
+    3,
+    14,
+    24,
+    19
+   ],
+   "theta_bits": [
+    "0x4017ee5be82d01a4",
+    "0x3fe4d9c8a853762d",
+    "0x400165f3c74d3178",
+    "0x3ff69c65f1620f03",
+    "0x4019744c1bd40c21",
+    "0x4016686bb485f727",
+    "0x3ff9a84658b023fe",
+    "0x400903a4c99065ec",
+    "0x400471d42e9b4673",
+    "0x4018b154020086e3",
+    "0x3feaf18976efa023",
+    "0x3fffc007274c4df4",
+    "0x400d957564858564",
+    "0x40077db495e95b6e",
+    "0x401050aae5e9cd30",
+    "0x40135c8b4d37e22b",
+    "0x3ff084a522c5e50d",
+    "0x3ffcb426bffe38fa",
+    "0x40172b63ce597c65",
+    "0x4011d69b1990d7ae",
+    "0x401a374435a79160",
+    "0x400c0f8530de7ae6",
+    "0x400f1b65982c8fe2",
+    "0x4002ebe3faf43bf5",
+    "0x4015a5739ab271e8",
+    "0x4005f7c4624250f0",
+    "0x4012999333645ced",
+    "0x401afa3c4f7b169f",
+    "0x40141f83670b676a",
+    "0x3ff390858a13fa08",
+    "0x400a8994fd377069",
+    "0x4014e27b80deeca9",
+    "0x401113a2ffbd526e"
+   ]
+  }
+ ],
+ "cipher": [
+  {
+   "counter": [
+    "0x0000000000000000",
+    "0x0000000000000000",
+    "0x0000000000000000",
+    "0x0000000000000000"
+   ],
+   "key": [
+    "0x0000000000000000",
+    "0x0000000000000000"
+   ],
+   "out": [
+    "0x16554d9eca36314c",
+    "0xdb20fe9d672d0fdc",
+    "0xd7e772cee186176b",
+    "0x7e68b68aec7ba23b"
+   ]
+  },
+  {
+   "counter": [
+    "0xffffffffffffffff",
+    "0xffffffffffffffff",
+    "0xffffffffffffffff",
+    "0xffffffffffffffff"
+   ],
+   "key": [
+    "0x0000000000000000",
+    "0x0000000000000000"
+   ],
+   "out": [
+    "0xcd550d53f8be2384",
+    "0x439ac40bd0bf7ad6",
+    "0x4a587160adf85749",
+    "0x0133ba62bfd514ee"
+   ]
+  },
+  {
+   "counter": [
+    "0x452821e638d01377",
+    "0xbe5466cf34e90c6c",
+    "0xc0ac29b7c97c50dd",
+    "0x3f84d5b5b5470917"
+   ],
+   "key": [
+    "0x0000000000000000",
+    "0x0000000000000000"
+   ],
+   "out": [
+    "0xedd8c513847c036a",
+    "0x4678fb9c5b477ed3",
+    "0x05467a426d50e15b",
+    "0xd30c0e38b36dbff8"
+   ]
+  },
+  {
+   "counter": [
+    "0x0000000000000000",
+    "0x0000000000000000",
+    "0x0000000000000000",
+    "0x0000000000000000"
+   ],
+   "key": [
+    "0xffffffffffffffff",
+    "0xffffffffffffffff"
+   ],
+   "out": [
+    "0x44b7493d1acfc229",
+    "0x6636af8e997921dd",
+    "0x3f73e132b5b3780e",
+    "0x605644dde03b01b1"
+   ]
+  },
+  {
+   "counter": [
+    "0xffffffffffffffff",
+    "0xffffffffffffffff",
+    "0xffffffffffffffff",
+    "0xffffffffffffffff"
+   ],
+   "key": [
+    "0xffffffffffffffff",
+    "0xffffffffffffffff"
+   ],
+   "out": [
+    "0x87b092c3013fe90b",
+    "0x438c3c67be8d0224",
+    "0x9cc7d7c69cd777b6",
+    "0xa09caebf594f0ba0"
+   ]
+  },
+  {
+   "counter": [
+    "0x452821e638d01377",
+    "0xbe5466cf34e90c6c",
+    "0xc0ac29b7c97c50dd",
+    "0x3f84d5b5b5470917"
+   ],
+   "key": [
+    "0xffffffffffffffff",
+    "0xffffffffffffffff"
+   ],
+   "out": [
+    "0x708db507725819cb",
+    "0x9f70f3721b9171c3",
+    "0x3e1457d059f2cdd3",
+    "0xc35e68d3f4b206cd"
+   ]
+  },
+  {
+   "counter": [
+    "0x0000000000000000",
+    "0x0000000000000000",
+    "0x0000000000000000",
+    "0x0000000000000000"
+   ],
+   "key": [
+    "0x243f6a8885a308d3",
+    "0x13198a2e03707344"
+   ],
+   "out": [
+    "0x1036e39633fb9b1d",
+    "0x9af91221c3743314",
+    "0x584530fc57441d7b",
+    "0x431ec5b7324dd2ff"
+   ]
+  },
+  {
+   "counter": [
+    "0xffffffffffffffff",
+    "0xffffffffffffffff",
+    "0xffffffffffffffff",
+    "0xffffffffffffffff"
+   ],
+   "key": [
+    "0x243f6a8885a308d3",
+    "0x13198a2e03707344"
+   ],
+   "out": [
+    "0xc6031793a1654c2f",
+    "0x7d387d530b970aab",
+    "0xe703045ee794969f",
+    "0xaa5f11d21961e668"
+   ]
+  },
+  {
+   "counter": [
+    "0x452821e638d01377",
+    "0xbe5466cf34e90c6c",
+    "0xc0ac29b7c97c50dd",
+    "0x3f84d5b5b5470917"
+   ],
+   "key": [
+    "0x243f6a8885a308d3",
+    "0x13198a2e03707344"
+   ],
+   "out": [
+    "0x1f52f064caed1bd6",
+    "0xe9750dcdbe1f22b0",
+    "0xa30d03b64f57c5b1",
+    "0x3f8082717eaaff7a"
+   ]
+  }
+ ],
+ "description": "Known-answer vectors for SND protocol 3.1. Words are unsigned 64-bit integers written as 0x%016x. 'cipher': Philox4x64-10 block function (Random123), counter -> 4 output words. 'stream': the first 8 words of the stream for (key, initial counter): the stream uses cipher(counter+1), cipher(counter+2) (counter is a 256-bit little-endian integer of four words, +1 modulo 2^256). 'seed_to_key': SHA-256 of the seed material, key = digest bytes 0..7 and 8..15 as little-endian words. 'block_theta': alpha, permutation and angles (binary64 bit patterns) of block b at re-draw m. 'theta_digest': SHA-256 over the little-endian binary64 angles of the listed blocks in ascending order (protocol 12.5.1 step 4).",
+ "external_cpp_standard": {
+  "computed_hex": "0x2f4fd040a2c8170c",
+  "counter": [
+   "0x00000000000009c3",
+   "0x0000000000000000",
+   "0x0000000000000000",
+   "0x0000000000000000"
+  ],
+  "key": [
+   "0x000000000132df0b",
+   "0x0000000000000000"
+  ],
+  "value_dec": 3409172418970261260,
+  "value_hex": "0x2f4fd040a2c8170c",
+  "word_index": 3
+ },
+ "generated_by": "scripts/make_kat.py using snd/philox_ref.py only",
+ "seed_to_key": [
+  {
+   "key": [
+    "0x1d289aad5f5b1038",
+    "0x139b29714dc14ac7"
+   ],
+   "seed_material_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f7c6465763d317c7665723d322e302e3133",
+   "sha256": "38105b5fad9a281dc74ac14d71299b13aa73ab9142bd5a9610c35efa2a21b3fb"
+  },
+  {
+   "key": [
+    "0xff25b8709dcd21bb",
+    "0xbf960efad96fe36f"
+   ],
+   "seed_material_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f7c6465763d347c7665723d322e302e3133",
+   "sha256": "bb21cd9d70b825ff6fe36fd9fa0e96bf8d8cee3fa55081b4af0e223c11e0b040"
+  },
+  {
+   "key": [
+    "0x4515cc607e0056c2",
+    "0x4fa1da0417f7c9db"
+   ],
+   "seed_material_hex": "a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a57c6465763d317c7665723d322e302e3133",
+   "sha256": "c256007e60cc1545dbc9f71704daa14f61b0aaa9f9f5434dd0685abbf4c2a92a"
+  },
+  {
+   "key": [
+    "0x8bf18339f839e1e8",
+    "0xbd0744949022799b"
+   ],
+   "seed_material_hex": "a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a57c6465763d347c7665723d322e302e3133",
+   "sha256": "e8e139f83983f18b9b792290944407bd4036899c5e773e237ee8e3667db466ff"
+  },
+  {
+   "key": [
+    "0x983cc7db14a461bf",
+    "0xb5a1b0f941a25017"
+   ],
+   "seed_material_hex": "c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff00010203040506077c6465763d317c7665723d322e302e3133",
+   "sha256": "bf61a414dbc73c981750a241f9b0a1b503060a6b9bb1d5989fedeaa9c263371c"
+  },
+  {
+   "key": [
+    "0x571e3e1837b462e7",
+    "0x9a37b746906df93c"
+   ],
+   "seed_material_hex": "c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff00010203040506077c6465763d347c7665723d322e302e3133",
+   "sha256": "e762b437183e1e573cf96d9046b7379aede346847c9d80a5a6155b59233ec2a5"
+  }
+ ],
+ "stream": [
+  {
+   "counter": [
+    "0x0000000000000000",
+    "0x0000000000000000",
+    "0x0000000000000000",
+    "0x0000000000000000"
+   ],
+   "key": [
+    "0x0000000000000000",
+    "0x0000000000000000"
+   ],
+   "words": [
+    "0x02f4ba6408e4d89b",
+    "0x3dd62b0b9ca8c5b2",
+    "0x1c8667a55d902e79",
+    "0x907d7a052fd5b4dc",
+    "0x809bf322883987c3",
+    "0x471128b9e807f7dd",
+    "0xf250ba0dbec065b7",
+    "0xfc6ed66767a457bc"
+   ]
+  },
+  {
+   "counter": [
+    "0x0000000000000001",
+    "0x0000000000000002",
+    "0x0000000000000003",
+    "0x0000000000000004"
+   ],
+   "key": [
+    "0x0123456789abcdef",
+    "0xfedcba9876543210"
+   ],
+   "words": [
+    "0x88e941281d6fe907",
+    "0x5823687dd5272472",
+    "0x246fd1b93a04f59d",
+    "0x5f18e9daf3d87de6",
+    "0xa0177786c22eeb8a",
+    "0x03d98f3fd166e544",
+    "0xaaaf3beb62510fa6",
+    "0x235db640e2fc64ce"
+   ]
+  },
+  {
+   "counter": [
+    "0xffffffffffffffff",
+    "0xffffffffffffffff",
+    "0x0000000000000000",
+    "0x0000000000000000"
+   ],
+   "key": [
+    "0x243f6a8885a308d3",
+    "0x13198a2e03707344"
+   ],
+   "words": [
+    "0x55a45017d8a67e99",
+    "0x534d09a268daba63",
+    "0x32147d0b76aee6b2",
+    "0x8994bb0a4a16fb83",
+    "0x91434dde503b85e2",
+    "0x835b5d2ead01356a",
+    "0x1190dee387b78ffd",
+    "0x94ad935f4f09e874"
+   ]
+  },
+  {
+   "counter": [
+    "0xffffffffffffffff",
+    "0xffffffffffffffff",
+    "0xffffffffffffffff",
+    "0xffffffffffffffff"
+   ],
+   "key": [
+    "0xffffffffffffffff",
+    "0xffffffffffffffff"
+   ],
+   "words": [
+    "0x44b7493d1acfc229",
+    "0x6636af8e997921dd",
+    "0x3f73e132b5b3780e",
+    "0x605644dde03b01b1",
+    "0x6d46cc0e71f0be7e",
+    "0x924ea1693f9a8bc0",
+    "0xfdc35f0198c91181",
+    "0xb4a311f17aa6568d"
+   ]
+  }
+ ],
+ "theta_digest": [
+  {
+   "L": 10000,
+   "blocks": [
+    0,
+    1,
+    2
+   ],
+   "key": [
+    "0x0123456789abcdef",
+    "0xfedcba9876543210"
+   ],
+   "m": 0,
+   "sha256": "71eb68da0e12e104475e3dd5b0bafd250bcd88c89869f56059c9780935ae3bd0"
+  },
+  {
+   "L": 10000,
+   "blocks": [
+    0,
+    1,
+    2
+   ],
+   "key": [
+    "0x0123456789abcdef",
+    "0xfedcba9876543210"
+   ],
+   "m": 1,
+   "sha256": "f879c0672e1be7441ddd37425c224093f11815882056751920dea41087ee95d6"
+  },
+  {
+   "L": 10000,
+   "blocks": [
+    5,
+    9,
+    10,
+    4000000
+   ],
+   "key": [
+    "0x243f6a8885a308d3",
+    "0x13198a2e03707344"
+   ],
+   "m": 1999,
+   "sha256": "b999f84611d62090a3261efd829d71579f0705df285a4ae84642a9f60081900a"
+  }
+ ]
+}

@@ -1,0 +1,79 @@
+{
+ "rows": [
+  {
+   "K": 50,
+   "L": 100,
+   "N": 5000,
+   "dU_rel_sum": 2.7398876621312185e-16,
+   "dV_rel_sum": 0.0,
+   "ok_sum": true,
+   "dU_rel_trig": 0.0,
+   "max_trig_ulp": 0.0,
+   "abs_U_over_sqrtV": 0.4433784096770481,
+   "dU_rel_vs_reference": 3.756055569802507e-16,
+   "reference_enclosure_rel": 6.469444279012926e-23,
+   "error_bound": 2.7015595076153054e-13
+  },
+  {
+   "K": 100,
+   "L": 1000,
+   "N": 100000,
+   "dU_rel_sum": 5.464468234062554e-16,
+   "dV_rel_sum": 0.0,
+   "ok_sum": true,
+   "dU_rel_trig": 0.0,
+   "max_trig_ulp": 0.0,
+   "abs_U_over_sqrtV": 1.7357223681373768,
+   "dU_rel_vs_reference": 5.274009794113214e-16,
+   "reference_enclosure_rel": 2.9377818380486437e-22,
+   "error_bound": 1.4498322980333258e-12
+  },
+  {
+   "K": 100,
+   "L": 10000,
+   "N": 1000000,
+   "dU_rel_sum": 7.350322418265074e-16,
+   "dV_rel_sum": 1.1788260111630867e-16,
+   "ok_sum": true,
+   "dU_rel_trig": 0.0,
+   "max_trig_ulp": 0.0,
+   "abs_U_over_sqrtV": 0.4717476150896265,
+   "dU_rel_vs_reference": 6.47465919496636e-16,
+   "reference_enclosure_rel": 9.299125663237708e-22,
+   "error_bound": 5.295271741611209e-12
+  },
+  {
+   "K": 1000,
+   "L": 1000,
+   "N": 1000000,
+   "dU_rel_sum": 3.314238773107067e-16,
+   "dV_rel_sum": 1.1639610083139208e-16,
+   "ok_sum": true,
+   "dU_rel_trig": 0.0,
+   "max_trig_ulp": 0.0,
+   "abs_U_over_sqrtV": 1.0740998298804556,
+   "dU_rel_vs_reference": 4.822925834131032e-16,
+   "reference_enclosure_rel": 9.34989374486805e-22,
+   "error_bound": 5.14670829599207e-12
+  }
+ ],
+ "worst_case_bound": {
+  "N": 12000000000.0,
+  "V": 1500000000.0,
+  "f_abs_max": 6.0,
+  "ulp1": 8.756556400062891e-10,
+  "ulp4": 2.626966920018867e-09,
+  "tree_depth": 35,
+  "tree_sum": 1.0215982466740038e-08,
+  "formula_total": 1.2842949386758963e-08
+ },
+ "libm_sample_worst_abs_error": 5.574375028360468e-17,
+ "timing": {
+  "sincos_us": 9.917528150003818,
+  "reference_U_us_per_term": 10.36118429999533,
+  "extrapolated_core_days_per_evaluation_N_1p2e10": 1.4390533749993513,
+  "note": "fastest of 5 runs on this machine, one core, pure Python; extrapolation, not measured at the registered scale"
+ },
+ "seconds": 25.579853296279907,
+ "ok": true
+}
